@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\PembeliController;
+use App\Http\Controllers\API\PenjahitController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,6 +18,10 @@ use App\Http\Controllers\API\PembeliController;
 
 Route::prefix('pembeli')->group(function () {
     Route::post('login', [PembeliController::class, 'login']);
+});
+
+Route::prefix('penjahit')->group(function () {
+    Route::post('login', [PenjahitController::class, 'login']);
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
