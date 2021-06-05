@@ -25,6 +25,7 @@
 
 <body class="font-sans antialiased">
 	<!-- Sidenav -->
+  <!-- sidenav -->
   <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
     <div class="scrollbar-inner">
       <!-- Brand -->
@@ -88,11 +89,14 @@
       </div>
     </div>
   </nav>
-	<!-- End of Sidenav -->
-
-
+  <!-- End of Sidenav -->
+  <!-- Main content -->
+	
+  <div class="main-content" id="panel">
+    @include('components.top-nav')
+	  {{ $slot }}
+  </div>
 	<!-- Page Content -->
-	{{ $slot }}
 </body>
 
 <!-- Core -->
