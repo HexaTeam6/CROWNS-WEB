@@ -9,6 +9,8 @@ class Konsumen extends Model
 {
     use HasFactory;
     protected $table = 'konsumen';
+    public $timestamps = false;
+
     protected $fillable = [
         'id_user',
         'nama',
