@@ -23,6 +23,7 @@ Route::prefix('pembeli')->group(function () {
 
 Route::prefix('penjahit')->group(function () {
     Route::post('login', [PenjahitController::class, 'login']);
+    Route::post('register', [PenjahitController::class, 'register']);
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

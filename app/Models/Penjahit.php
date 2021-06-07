@@ -9,6 +9,8 @@ class Penjahit extends Model
 {
     use HasFactory;
     protected $table = 'penjahit';
+    public $timestamps = false;
+
     protected $fillable = [
         'id_user',
         'nama',
@@ -25,5 +27,15 @@ class Penjahit extends Model
 
     public function user() {
         return $this->belongsTo(User::class, 'id_user');
+    }
+
+    public function baju()
+    {
+        return $this->belongsToMany(Baju::class, 'memiliki_katalog', 'id_penjahit', 'id_baju')->withTimestamps();
+    }
+
+    public function jamBuka()
+    {
+        return $this->hasMany(JamBuka::class, 'id_penjahit');
     }
 }

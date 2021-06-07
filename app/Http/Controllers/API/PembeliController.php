@@ -75,7 +75,7 @@ class PembeliController extends APIController
         
         DB::commit();
 
-        $response['token'] =  $user->createToken('MyApp')->accessToken;
+        $response['token'] =  $user->createToken('Crowns Pembeli')->accessToken;
         return $this->sendResponse($response, 'Pembeli berhasil terdaftar');
     }
 }
