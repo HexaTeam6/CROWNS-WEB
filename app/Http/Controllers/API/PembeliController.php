@@ -35,11 +35,12 @@ class PembeliController extends APIController
         }
     }
 
+    // Fungsi mendaftar untuk pembeli
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'username' => 'required|max:30',
-            'email' => 'required|email|max:50',
+            'username' => 'required|max:30|unique:users',
+            'email' => 'required|email|max:50|unique:users',
             'password' => 'required|min:8',
             'nama' => 'required|max:50',
             'jenis_kelamin' => 'required|max:1',
@@ -52,7 +53,7 @@ class PembeliController extends APIController
         ]);
 
         if ($validator->fails()) {
-            return $this->sendError('Format salah', $validator->errors(), 400);
+            return $this->sendError('Validasi gagal', $validator->errors(), 400);
         }
 
         DB::beginTransaction();
