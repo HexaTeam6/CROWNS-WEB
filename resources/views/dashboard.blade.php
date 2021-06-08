@@ -29,7 +29,7 @@
 								</thead>
 								<tbody>
 									@foreach($users as $user)
-									@if ($user->role == 'pembeli')
+									@if ($user->role == 'pembeli' || $user->role == 'konsumen')
 									<tr>
 										<td>
 											{{ $user->id }}
@@ -41,7 +41,7 @@
 										<i class="ni ni-single-02 <?php if($user->konsumen->jenis_kelamin == 'L') echo 'text-info'; else echo 'text-danger'; ?> mr-3"></i>{{ $user->konsumen->jenis_kelamin }}
 										</td>
 										<td>
-											<i class="fas fa-arrow-up text-success mr-3"></i> 46,53%
+										<i class="ni ni-pin-3 text-warning mr-1"></i>{{ $user->konsumen->kota }}
 										</td>
 									</tr>
 									@endif
@@ -73,11 +73,12 @@
 										<th scope="col">Nama</th>
 										<th scope="col">Gender</th>
 										<th scope="col">Kab/Kot</th>
+										<th scope="col">Action</th>
 									</tr>
 								</thead>
 								<tbody>
 									@foreach($users as $user)
-									@if ($user->role == 'penjahit')
+									@if ($user->penjahit)
 									<tr>
 										<td>
 											{{ $user->id }}
@@ -89,7 +90,12 @@
 										<i class="ni ni-single-02 <?php if($user->penjahit->jenis_kelamin == 'L') echo 'text-info'; else echo 'text-danger'; ?> mr-3"></i>{{ $user->penjahit->jenis_kelamin }}
 										</td>
 										<td>
-											<i class="ni ni-pin-3 text-warning mr-3"></i> {{ $user->penjahit->kota }}
+											<i class="ni ni-pin-3 text-warning mr-1"></i>{{ $user->penjahit->kota }}
+										</td>
+										<td>
+											<a href="{{ route('penjahit.update', ['id' => $user->id]) }}" class="btn btn-sm btn-primary">Lihat</a>
+											<button type="button" data-toggle="modal" data-target="#exampleModal" user-id="{{$user->id}}" penjahit-id="{{$user->penjahit->id}}" class="btn-del btn btn-sm btn-danger">Hapus</a>	
+											
 										</td>
 									</tr>
 									@endif
@@ -99,9 +105,34 @@
 						</div>
 					</div>
 				</div>
-
 			</div>
+			@include('components.modal')
 			@include('components.footer')
 		</div>
 	</x-slot>
+	<x-slot name="script">
+    <script>
+      const deleteButtons = document.querySelectorAll('.btn-del');
+      deleteButtons.forEach( btn => {
+        btn.addEventListener('click', (e) => {
+          const id = e.srcElement.getAttribute('user-id');
+		  const id_penjahit = e.srcElement.getAttribute('penjahit-id');
+          console.log(id)
+		  console.log(id_penjahit)
+          const input = document.getElementById('btn-id');
+		  const penjahit_input = document.getElementById('penjahit-id');
+          input.value = id;
+		  penjahit_input.value = id_penjahit;
+        })
+      })
+      $('#data-table').DataTable({
+        "language": {
+          "paginate": {
+            "previous": "<",
+            "next": ">",
+          }
+        }
+      });
+    </script>
+  </x-slot>
 </x-app-layout>

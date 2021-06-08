@@ -46,10 +46,7 @@ class AdminController extends Controller
 
     public function register(AdminRegisterRequest $request)
     {
-        
-
         DB::beginTransaction();
-
         try {
             $user = User::create([
                 'username' => $request->username,
@@ -61,11 +58,10 @@ class AdminController extends Controller
                 'id_user' => $user->id,
                 'nama' => $request->nama
             ]);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             DB::rollback();
             return redirect()->back()->with('error, register gagal');
         }
-        
         DB::commit();
         
         try{
