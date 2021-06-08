@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +25,6 @@ Route::get('/register', [AdminController::class, 'registerPage'])->name('registe
 Route::post('/register', [AdminController::class, 'register'])->name('register.post');
 
 Route::middleware('auth.role:admin')->group(function() {
-    Route::get('/dashboard', [AdminController::class, 'index']);
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
+    Route::post('/dashboard/logout', [AdminController::class, 'logout'])->name('logout');
 });
-Route::get('/dashboard', [AdminController::class, 'index']);

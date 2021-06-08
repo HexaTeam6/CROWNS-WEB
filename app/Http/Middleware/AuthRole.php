@@ -18,13 +18,9 @@ class AuthRole
     public function handle(Request $request, Closure $next)
     {
         if (Auth::check()) {
-			return redirect()->route('dashboard');
-		}
-
-		if (Auth::user()->role == 'admin') {
-			return $next($request);
-		} else {
-			return redirect()->route('login')->with('message', 'maaf anda bukan admin');
+            if (Auth::user()->role == 'admin'){
+                return $next($request);
+            }
 		}
     }
 }

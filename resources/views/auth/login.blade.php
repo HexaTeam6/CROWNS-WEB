@@ -1,9 +1,9 @@
 <x-auth-layout>
 
   <!-- Success message -->
-  @if(Session::has('success'))
-  <div class="alert alert-success">
-      {{Session::get('success')}}
+  @if(Session::has('message'))
+  <div class="alert alert-warning">
+      {{Session::get('message')}}
   </div>
   @endif
 
