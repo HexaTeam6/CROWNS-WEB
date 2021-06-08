@@ -13,7 +13,8 @@ class Admin extends Model
         'id_user',
         'nama'
     ];
-
+    public $timestamps = false;
+    
     public function user() {
         return $this->belongsTo(User::class, 'id_user');
     }

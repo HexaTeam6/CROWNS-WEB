@@ -84,7 +84,7 @@
       <div class="row justify-content-center">
         <div class="col-lg-5 col-md-7">
           <div class="card bg-secondary border-0 mb-0">
-            <a href="#" class="btn-sm btn btn-primary" style="margin: 10px;width: fit-content;">Back to Dashboard</a>
+            <a href="{{ route('landing') }}" class="btn-sm btn btn-primary" style="margin: 10px;width: fit-content;">Back to Home</a>
             <div class="card-body px-lg-5 py-lg-5">
               @if (session('status'))
                   <div class="alert mb-3 alert-success">

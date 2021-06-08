@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,19 +16,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('landing');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
+Route::get('/login', [AdminController::class, 'loginPage'])->name('login');
+Route::post('/login', [AdminController::class, 'login'])->name('login.post');
+Route::get('/register', [AdminController::class, 'registerPage'])->name('register');
+Route::post('/register', [AdminController::class, 'register'])->name('register.post');
 
-Route::get('/login', function () {
-    return view('auth.login');
+Route::middleware('auth.role:admin')->group(function() {
+    Route::get('/dashboard', [AdminController::class, 'index']);
 });
-
-Route::get('/register', function () {
-    return view('auth.register');
-});
-Route::get('/forgot', function () {
-    return view('auth.forgot-password');
-});
+Route::get('/dashboard', [AdminController::class, 'index']);
