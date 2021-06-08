@@ -21,7 +21,7 @@ class Penjahit extends Model
         'bank',
         'kodepos',
         'kecamatan',
-        'kota/kabupaten',
+        'kota',
         'alamat'
     ];
 

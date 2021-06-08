@@ -22,7 +22,7 @@ class CreateKonsumenTable extends Migration
             $table->date('tanggal_lahir')->nullable();
             $table->string('kodepos')->nullable();
             $table->string('kecamatan')->nullable();
-            $table->string('kota/kabupaten')->nullable();
+            $table->string('kota')->nullable();
             $table->string('alamat')->nullable();
             
             $table->foreign('id_user')->references('id')->on('users');

@@ -19,7 +19,7 @@ class Konsumen extends Model
         'tanggal_lahir',
         'kodepos',
         'kecamatan',
-        'kota/kabupaten',
+        'kota',
         'alamat'
     ];
 
