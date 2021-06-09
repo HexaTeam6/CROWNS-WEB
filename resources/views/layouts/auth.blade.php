@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
   <meta name="author" content="Creative Tim">
-  <title>Login - Admin</title>
+  <title>{{ $title }} - Admin</title>
   <!-- Favicon -->
   <link rel="icon" href="{{asset('assets/img/brand/favicon.png')}}" type="image/png">
   <!-- Fonts -->
@@ -24,7 +24,7 @@
   <nav id="navbar-main" class="navbar navbar-horizontal navbar-transparent navbar-main navbar-expand-lg navbar-light">
     <div class="container">
       <a class="navbar-brand" href="#">
-        <img src="{{ asset('image/logo.png') }}"> 
+        <img src="{{ asset('assets/img/brand/crowns.png') }}"> 
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -47,13 +47,8 @@
         </div>
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="/" class="nav-link">
               <span class="nav-link-inner--text">Home</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <span class="nav-link-inner--text">Login</span>
             </a>
           </li>
         </ul>
@@ -68,7 +63,7 @@
         <div class="header-body text-center mb-7">
           <div class="row justify-content-center">
             <div class="col-xl-5 col-lg-6 col-md-8 px-5">
-              <h1 class="text-white">Register</h1>
+              <h1 class="text-white">{{ $title }}</h1>
             </div>
           </div>
         </div>
@@ -84,7 +79,6 @@
       <div class="row justify-content-center">
         <div class="col-lg-5 col-md-7">
           <div class="card bg-secondary border-0 mb-0">
-            <a href="{{ route('landing') }}" class="btn-sm btn btn-primary" style="margin: 10px;width: fit-content;">Back to Home</a>
             <div class="card-body px-lg-5 py-lg-5">
               @if (session('status'))
                   <div class="alert mb-3 alert-success">
@@ -100,18 +94,6 @@
       </div>
     </div>
   </div>
-  <!-- Footer -->
-  <footer class="py-5" id="footer-main">
-    <div class="container">
-      <div class="row align-items-center justify-content-xl-between">
-        <div class="col-xl-6">
-          <div class="copyright text-center text-xl-left text-muted">
-            &copy; 2020
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
   <!-- Argon Scripts -->
   <!-- Core -->
   <script src="{{ asset('assets/vendor/jquery/dist/jquery.min.js') }}"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->

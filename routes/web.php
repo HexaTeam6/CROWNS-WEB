@@ -22,18 +22,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 })->name('landing');
 
 Route::get('/login', [AdminController::class, 'loginPage'])->name('login');
 Route::post('/login', [AdminController::class, 'login'])->name('login.post');
 Route::get('/register', [AdminController::class, 'registerPage'])->name('register');
 Route::post('/register', [AdminController::class, 'register'])->name('register.post');
-
-// Route::middleware('auth.role:admin')->group(function() {
-//     Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
-//     Route::post('/dashboard/logout', [AdminController::class, 'logout'])->name('logout');
-// });
 
 Route::group(['prefix' => 'dashboard', 'middleware' => 'auth.role:admin'], function (){
     Route::get('', [AdminController::class, 'index'])->name('dashboard');

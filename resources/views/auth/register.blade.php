@@ -1,4 +1,7 @@
 <x-auth-layout>
+  <x-slot name="title">
+    Register
+  </x-slot>
   <x-slot name="slot">
   <!-- form -->
   <!-- form -->
