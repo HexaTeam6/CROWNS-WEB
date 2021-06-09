@@ -29,6 +29,7 @@ Route::prefix('penjahit')->group(function () {
 
 Route::prefix('kategori')->group(function () {
     Route::get('/', [KategoriController::class, 'index']);
+    Route::get('/{id}/katalog', [KategoriController::class, 'katalogByKategori']);
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
