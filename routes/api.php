@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\KategoriController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\PembeliController;
@@ -24,6 +25,10 @@ Route::prefix('pembeli')->group(function () {
 Route::prefix('penjahit')->group(function () {
     Route::post('login', [PenjahitController::class, 'login']);
     Route::post('register', [PenjahitController::class, 'register']);
+});
+
+Route::prefix('kategori')->group(function () {
+    Route::get('/', [KategoriController::class, 'index']);
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

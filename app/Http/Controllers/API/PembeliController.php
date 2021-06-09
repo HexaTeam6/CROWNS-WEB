@@ -48,7 +48,7 @@ class PembeliController extends APIController
             'tanggal_lahir' => 'required|date',
             'kodepos' => 'required|numeric|digits_between:1,6',
             'kecamatan' => 'required|max:20',
-            'kota/kabupaten' => 'required|max:20',
+            'kota' => 'required|max:20',
             'alamat' => 'required|max:1024'
         ]);
 

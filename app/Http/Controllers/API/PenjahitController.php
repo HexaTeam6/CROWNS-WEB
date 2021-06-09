@@ -35,6 +35,7 @@ class PenjahitController extends APIController
         }
     }
 
+    // Fungsi mendaftar untuk penjahit
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -49,7 +50,7 @@ class PenjahitController extends APIController
             'bank' => 'required',
             'kodepos' => 'required|numeric|digits_between:1,6',
             'kecamatan' => 'required|max:20',
-            'kota/kabupaten' => 'required|max:20',
+            'kota' => 'required|max:20',
             'alamat' => 'required|max:1024',
             'list_jam_buka' => 'required|array',
             'list_jam_buka.*.hari' => 'required',
