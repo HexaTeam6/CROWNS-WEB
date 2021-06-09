@@ -35,6 +35,7 @@ Route::prefix('kategori')->group(function () {
 
 Route::prefix('katalog')->group(function () {
     Route::get('/', [KatalogController::class, 'index']);
+    Route::get('/{id}/penjahit', [KatalogController::class, 'penjahitByKatalog']);
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
