@@ -52,10 +52,6 @@ class PenjahitController extends APIController
             'kecamatan' => 'required|max:20',
             'kota' => 'required|max:20',
             'alamat' => 'required|max:1024',
-            'list_jam_buka' => 'required|array',
-            'list_jam_buka.*.hari' => 'required',
-            'list_jam_buka.*.jam_buka' => 'required|date_format:H:i',
-            'list_jam_buka.*.jam_tutup' => 'required|date_format:H:i',
             'list_id_baju' => 'required|array',
             'list_id_baju.*.id_baju' => 'required|exists:baju,id'
         ]);
@@ -76,9 +72,6 @@ class PenjahitController extends APIController
             $inputPenjahit['id_user'] = $user->id;
             $inputPenjahit['tanggal_lahir'] = Carbon::parse($inputPenjahit['tanggal_lahir'])->format('Y-m-d');
             $penjahit = Penjahit::create($inputPenjahit);
-
-            $inputJamBuka = $request->list_jam_buka;
-            $penjahit->jamBuka()->createMany($inputJamBuka);
 
             $inputBaju = $request->list_id_baju;
             $penjahit->baju()->attach($inputBaju);
