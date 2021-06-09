@@ -15,13 +15,16 @@ use Exception;
 class AdminController extends Controller
 {
     public function index() {
-        $user = User::all();
-        return view('dashboard', ['users' => $user]);
+        return view('dashboard');
     }
+    public function table() {
+        $user = User::all();
+        return view('accounts.index', ['users' => $user]);
+    }
+    
     public function loginPage() {
         return view('auth.login');
     }
-
     public function registerPage() {
         return view('auth.register');
     }

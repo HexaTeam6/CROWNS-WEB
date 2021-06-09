@@ -8,6 +8,12 @@
 				</div>
 			</div>
 		</div>
+		<!-- Success message -->
+        @if(Session::has('success'))
+        <div class="alert alert-success">
+            {{Session::get('success')}}
+        </div>
+        @endif
 		<!-- Page content -->
 		<div class="container-fluid mt--6">
 			<div class="row">
