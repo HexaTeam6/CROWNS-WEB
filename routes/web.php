@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\Konsumen\ViewController as KonsumenViewController
 use App\Http\Controllers\Admin\Penjahit\DeleteController as PenjahitDeleteController;
 use App\Http\Controllers\Admin\Penjahit\UpdateController as PenjahitUpdateController;
 use App\Http\Controllers\Admin\Penjahit\ViewController as PenjahitViewController;
+use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\UpdateController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +31,10 @@ Route::get('/', function () {
 Route::group(['prefix' => 'dashboard', 'middleware' => 'auth.role:admin'], function (){
     Route::get('', [AdminController::class, 'index'])->name('dashboard');
     Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
+    Route::get('/table', [AdminController::class, 'table'])->name('table');
+    Route::get('/profile', [ProfileController::class, 'view'])->name('profile');
+    Route::put('/profile', [UpdateController::class, 'updatePut'])->name('profile.update_put');
+    
     Route::group(['prefix' => 'konsumen'], function (){
         Route::get('/update/{id}', [KonsumenViewController::class, 'update'])->name('konsumen.update');
         Route::put('/update/{id}', [KonsumenUpdateController::class, 'updatePut'])->name('konsumen.update_put');
@@ -40,4 +46,5 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth.role:admin'], funct
         Route::put('/update/{id}', [PenjahitUpdateController::class, 'updatePut'])->name('penjahit.update_put');
         Route::delete('/delete', [PenjahitDeleteController::class, 'delete'])->name('penjahit.delete');
     });
+
 });

@@ -110,29 +110,29 @@
 			@include('components.footer')
 		</div>
 	</x-slot>
-	<x-slot name="script">
-    <script>
-      const deleteButtons = document.querySelectorAll('.btn-del');
-      deleteButtons.forEach( btn => {
-        btn.addEventListener('click', (e) => {
-          const id = e.srcElement.getAttribute('user-id');
-		  const id_penjahit = e.srcElement.getAttribute('penjahit-id');
-          console.log(id)
-		  console.log(id_penjahit)
-          const input = document.getElementById('btn-id');
-		  const penjahit_input = document.getElementById('penjahit-id');
-          input.value = id;
-		  penjahit_input.value = id_penjahit;
-        })
-      })
-      $('#data-table').DataTable({
-        "language": {
-          "paginate": {
-            "previous": "<",
-            "next": ">",
-          }
-        }
-      });
-    </script>
-  </x-slot>
+	@section('script')
+		<script>
+			const deleteButtons = document.querySelectorAll('.btn-del');
+			deleteButtons.forEach( btn => {
+				btn.addEventListener('click', (e) => {
+				const id = e.srcElement.getAttribute('user-id');
+				const id_penjahit = e.srcElement.getAttribute('penjahit-id');
+				console.log(id)
+				console.log(id_penjahit)
+				const input = document.getElementById('btn-id');
+				const penjahit_input = document.getElementById('penjahit-id');
+				input.value = id;
+				penjahit_input.value = id_penjahit;
+				})
+			})
+			$('#data-table').DataTable({
+				"language": {
+				"paginate": {
+					"previous": "<",
+					"next": ">",
+				}
+				}
+			});
+		</script>
+	@endsection
 </x-app-layout>

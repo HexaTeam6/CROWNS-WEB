@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\Admin\Konsumen;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\User;
 
 class ViewController extends Controller
 {
-    //
+    public function update($id) 
+    {
+        $user = User::findOrFail($id);
+        return view('accounts.profile', compact('user'));
+    }
 }
