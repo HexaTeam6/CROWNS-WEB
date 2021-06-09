@@ -18,7 +18,7 @@ class CreateLokasiPenjemputanTable extends Migration
             $table->unsignedBigInteger('id_pesanan');
             $table->string('kode_pos')->nullable();
             $table->string('kecamatan')->nullable();
-            $table->string('kota/kabupaten')->nullable();
+            $table->string('kota')->nullable();
             $table->string('alamat')->nullable();
             $table->dateTime('waktu')->nullable();
             $table->string('instruksi')->nullable();

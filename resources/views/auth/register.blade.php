@@ -5,7 +5,7 @@
   <x-slot name="slot">
   <!-- form -->
   <!-- form -->
-  <form role="form" method="POST" action="{{ route('register.post') }}">
+  <form method="POST" action="{{ route('register') }}">
     @csrf
     <!-- Error -->
     @if ($errors->has('username'))
@@ -66,7 +66,7 @@
         <div class="input-group-prepend">
           <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
         </div>
-        <input class="form-control" placeholder="Confirm Password" type="password" id="password_confirmation" name="password_confirmation"  autocomplete="new-password">
+        <input class="form-control" placeholder="Confirm Password" type="password" id="password_confirmation" name="password_confirmation">
       </div>
     </div>
 

@@ -25,7 +25,7 @@
                                 <img alt="Image placeholder" src="{{ asset('assets/img/theme/team-4.jpg') }}">
                             </span>
                             <div class="media-body  ml-2  d-none d-lg-block">
-                                <span class="mb-0 text-sm  font-weight-bold">{{ Auth::user()->admin->nama }}</span>
+                                <span class="mb-0 text-sm  font-weight-bold">{{ Auth::user()->admin ? Auth::user()->admin->nama : 'Account' }}</span>
                             </div>
                         </div>
                     </a>

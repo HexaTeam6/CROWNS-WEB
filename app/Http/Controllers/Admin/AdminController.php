@@ -65,8 +65,11 @@ class AdminController extends Controller
         DB::commit();
         
         try{
-            Auth::attempt(['email' => $request->username, 'password' => $request->password]);
-            return view('dashboard');
+            Auth::attempt(['username' => $request->username, 'password' => $request->password]);
+            if(Auth::check()) 
+                return view('dashboard');
+            else
+                return redirect()->back()->with('message', 'silakan login secara manual');
         } catch (Exception $e) {
             return redirect()->back()->with('message', 'silakan login secara manual');
         }

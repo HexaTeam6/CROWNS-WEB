@@ -20,20 +20,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+require __DIR__.'/auth.php';
 
 Route::get('/', function () {
     return redirect()->route('login');
 })->name('landing');
 
-Route::get('/login', [AdminController::class, 'loginPage'])->name('login');
-Route::post('/login', [AdminController::class, 'login'])->name('login.post');
-Route::get('/register', [AdminController::class, 'registerPage'])->name('register');
-Route::post('/register', [AdminController::class, 'register'])->name('register.post');
-
 Route::group(['prefix' => 'dashboard', 'middleware' => 'auth.role:admin'], function (){
     Route::get('', [AdminController::class, 'index'])->name('dashboard');
     Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
-
     Route::group(['prefix' => 'konsumen'], function (){
         Route::get('/update/{id}', [KonsumenViewController::class, 'update'])->name('konsumen.update');
         Route::put('/update/{id}', [KonsumenUpdateController::class, 'updatePut'])->name('konsumen.update_put');
