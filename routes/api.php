@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\KatalogController;
 use App\Http\Controllers\API\KategoriController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +31,10 @@ Route::prefix('penjahit')->group(function () {
 Route::prefix('kategori')->group(function () {
     Route::get('/', [KategoriController::class, 'index']);
     Route::get('/{id}/katalog', [KategoriController::class, 'katalogByKategori']);
+});
+
+Route::prefix('katalog')->group(function () {
+    Route::get('/', [KatalogController::class, 'index']);
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
