@@ -78,4 +78,21 @@ class PembeliController extends APIController
         $response['token'] =  $user->createToken('Crowns Pembeli')->accessToken;
         return $this->sendResponse($response, 'Pembeli berhasil terdaftar');
     }
+
+    // fungsi untuk mengambil profil pembeli
+    // berdasarkan id users
+    public function profileByUsersId(Request $request)
+    {
+        $user = User::find($request->id_user);
+
+        if(!$user || $user->role != 'pembeli') {
+            return $this->sendError("Pembeli tidak ditemukan");
+        }
+
+        $response = $user->konsumen;
+        $response['username'] = $user->username;
+        $response['email'] = $user->email;
+
+        return $this->sendResponse($response, 'Profil pembeli berhasil diambil');
+    }
 }

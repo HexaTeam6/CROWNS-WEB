@@ -21,6 +21,7 @@ use App\Http\Controllers\API\PenjahitController;
 Route::prefix('pembeli')->group(function () {
     Route::post('login', [PembeliController::class, 'login']);
     Route::post('register', [PembeliController::class, 'register']);
+    Route::get('/{id_user}', [PembeliController::class, 'profileByUsersId']);
 });
 
 Route::prefix('penjahit')->group(function () {
