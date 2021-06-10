@@ -15,6 +15,6 @@ class DeleteController extends Controller
         $penjahit = Penjahit::findOrFail($request->id_penjahit);
         $penjahit->delete();
         $user->delete();
-        return redirect()->route('dashboard');
+        return redirect()->back();
     }
 }

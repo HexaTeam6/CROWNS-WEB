@@ -19,6 +19,7 @@
           @method('DELETE')
           <input type="hidden" name="id" id="btn-id">
           <input type="hidden" name="id_penjahit" id="penjahit-id">
+          <input type="hidden" name="id_konsumen" id="konsumen-id">
           <button type="submit" class="btn btn-primary">Hapus</button>
         </form>
       </div>

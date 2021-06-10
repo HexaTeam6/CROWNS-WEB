@@ -30,6 +30,6 @@ class UpdateController extends Controller
             'kota' => $request->kota,
             'alamat' => $request->alamat
         ]);
-        return view('profile', compact('user'));
+        return view('accounts.profile', compact('user'));
     }
 }
