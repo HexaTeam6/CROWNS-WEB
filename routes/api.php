@@ -27,6 +27,7 @@ Route::prefix('pembeli')->group(function () {
 Route::prefix('penjahit')->group(function () {
     Route::post('login', [PenjahitController::class, 'login']);
     Route::post('register', [PenjahitController::class, 'register']);
+    Route::get('/{id_user}', [PenjahitController::class, 'profileByUsersId']);
 });
 
 Route::prefix('kategori')->group(function () {

@@ -86,4 +86,22 @@ class PenjahitController extends APIController
         return $this->sendResponse($response, 'Penjahit berhasil terdaftar');
         
     }
+
+    // fungsi untuk mengambil profil penjahit
+    // berdasarkan id user
+    public function profileByUsersId(Request $request)
+    {
+        $user = User::find($request->id_user);
+
+        if(!$user || $user->role != 'penjahit') {
+            return $this->sendError("penjahit tidak ditemukan");
+        }
+
+        $response = $user->penjahit;
+        $response['username'] = $user->username;
+        $response['email'] = $user->email;
+        $response['katalog'] = $user->penjahit()->first()->baju;
+
+        return $this->sendResponse($response, 'Profil penjahit berhasil diambil');
+    }
 }
