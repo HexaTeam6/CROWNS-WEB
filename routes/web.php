@@ -31,7 +31,7 @@ Route::get('/', function () {
 Route::group(['prefix' => 'dashboard', 'middleware' => 'auth.role:admin'], function (){
     Route::get('', [AdminController::class, 'index'])->name('dashboard');
     Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
-    Route::get('/table', [AdminController::class, 'table'])->name('table');
+    Route::get('/manage-akun', [AdminController::class, 'table'])->name('manage-akun');
     Route::get('/profile', [ProfileController::class, 'view'])->name('profile');
     Route::put('/profile', [UpdateController::class, 'updatePut'])->name('profile.update_put');
     

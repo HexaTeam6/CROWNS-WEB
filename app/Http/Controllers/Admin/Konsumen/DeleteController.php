@@ -15,6 +15,6 @@ class DeleteController extends Controller
         $konsumen = Konsumen::findOrFail($request->id_konsumen);
         $konsumen->delete();
         $user->delete();
-        return redirect()->route('dashboard');
+        return redirect()->back();
     }
 }

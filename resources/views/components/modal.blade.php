@@ -14,7 +14,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-        <form action="{{route('penjahit.delete')}}" method="POST">
+        <form method="POST" class="form-delete" name="form-delete-name" id="myform">
           @csrf
           @method('DELETE')
           <input type="hidden" name="id" id="btn-id">
