@@ -30,9 +30,7 @@
 				</div>
 
 				<div class="card-body">
-					<form method="POST" action="{{ $user->penjahit ? route('penjahit.update_put', ['id' => $user->id]) : route('konsumen.update_put', ['id' => $user->id]) }}">
-						@method('PUT')
-						@csrf
+					<form>
 						<h6 class="heading-small text-muted mb-4">User information</h6>
 						<div class="pl-lg-4">
 							<div class="row">
@@ -129,7 +127,7 @@
 							</div>
 						</div>
 						<hr class="my-4" />
-						<input type="submit" class="btn btn-neutral float-right" value="Edit profile">
+						<a class="btn btn-neutral float-right" href="{{ route('manage-akun') }}">Back</a>
 					</form>
 				</div>
 

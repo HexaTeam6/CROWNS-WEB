@@ -27,6 +27,6 @@ class Baju extends Model
 
     public function penjahit()
     {
-        return $this->belongsToMany(Penjahit::class, 'memiliki_katalog', 'id_baju', 'id_penjahit')->withTimestamps();
+        return $this->belongsToMany(Penjahit::class, 'memiliki_katalog', 'id_baju', 'id_penjahit')->as('memiliki_table')->withTimestamps();
     }
 }
