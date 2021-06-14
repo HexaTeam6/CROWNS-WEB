@@ -26,4 +26,9 @@ class Konsumen extends Model
     public function user() {
         return $this->belongsTo(User::class, 'id_user');
     }
+
+    public function pesanan()
+    {
+        return $this->hasMany(Pesanan::class, 'id_konsumen');
+    }
 }

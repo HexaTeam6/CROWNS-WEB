@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\PembeliController;
 use App\Http\Controllers\API\PenjahitController;
+use App\Http\Controllers\API\PesananController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,10 @@ Route::prefix('katalog')->group(function () {
     Route::get('/{id}/penjahit', [KatalogController::class, 'penjahitByKatalog']);
 });
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix('pesanan')->group(function () {
+    Route::middleware(['auth:api', 'checkPembeli'])->group(function () {
+        Route::post('/create', [PesananController::class, 'create']);
+        Route::post('/updateDetail', [PesananController::class, 'updateDetail']);
+        Route::post('/uploadDesignCustom', [PesananController::class, 'uploadDesignCustom']);
+    });
 });

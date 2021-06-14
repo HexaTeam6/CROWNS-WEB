@@ -13,7 +13,6 @@ class Pesanan extends Model
         'id_penjahit',
         'id_konsumen',
         'id_baju',
-        'id_design_kostum',
         'jumlah',
         'biaya_total',
         'status_pesanan',
@@ -21,7 +20,25 @@ class Pesanan extends Model
         'updated_at'
     ];
 
-    public function kategori() {
-        return $this->belongsTo(Kategori::class, 'id_kategori');
+
+
+    public function designKustom()
+    {
+        return $this->hasMany(DesignKostum::class, 'id_pesanan');
+    }
+
+    public function detailPesanan()
+    {
+        return $this->hasMany(DetailPesanan::class, 'id_pesanan');
+    }
+
+    public function pembeli()
+    {
+        return $this->belongsTo(Konsumen::class, 'id_konsumen');
+    }
+
+    public function penjahit()
+    {
+        return $this->belongsTo(Penjahit::class, 'id_penjahit');
     }
 }

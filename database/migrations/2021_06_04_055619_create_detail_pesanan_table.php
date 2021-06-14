@@ -22,7 +22,7 @@ class CreateDetailPesananTable extends Migration
             $table->float('dada')->nullable();
             $table->float('leher')->nullable();
             $table->float('tinggi_tubuh')->nullable();
-            $table->float('berat_barat')->nullable();
+            $table->float('berat_badan')->nullable();
             $table->text('instruksi_pembuatan')->nullable();
             
             $table->foreign('id_pesanan')->references('id')->on('pesanan');
