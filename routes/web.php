@@ -7,6 +7,9 @@ use App\Http\Controllers\Admin\Konsumen\ViewController as KonsumenViewController
 use App\Http\Controllers\Admin\Penjahit\DeleteController as PenjahitDeleteController;
 use App\Http\Controllers\Admin\Penjahit\UpdateController as PenjahitUpdateController;
 use App\Http\Controllers\Admin\Penjahit\ViewController as PenjahitViewController;
+use App\Http\Controllers\Admin\Katalog\ViewController as KatalogViewController;
+use App\Http\Controllers\Admin\Katalog\UpdateController as KatalogUpdateController;
+use App\Http\Controllers\Admin\Katalog\DeleteController as KatalogDeleteController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\UpdateController;
 use Illuminate\Support\Facades\Auth;
@@ -31,20 +34,30 @@ Route::get('/', function () {
 Route::group(['prefix' => 'dashboard', 'middleware' => 'auth.role:admin'], function (){
     Route::get('', [AdminController::class, 'index'])->name('dashboard');
     Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
-    Route::get('/manage-akun', [AdminController::class, 'table'])->name('manage-akun');
     Route::get('/profile', [ProfileController::class, 'view'])->name('profile');
     Route::put('/profile', [UpdateController::class, 'updatePut'])->name('profile.update_put');
     
+    Route::get('/manage-akun', [AdminController::class, 'table'])->name('manage-akun');
     Route::group(['prefix' => 'konsumen'], function (){
-        Route::get('/update/{id}', [KonsumenViewController::class, 'update'])->name('konsumen.update');
+        Route::get('/view/{id}', [KonsumenViewController::class, 'update'])->name('konsumen.update');
         Route::put('/update/{id}', [KonsumenUpdateController::class, 'updatePut'])->name('konsumen.update_put');
         Route::delete('/delete', [KonsumenDeleteController::class, 'delete'])->name('konsumen.delete');
     });
-    
     Route::group(['prefix' => 'penjahit'], function () {
-        Route::get('/update/{id}', [PenjahitViewController::class, 'update'])->name('penjahit.update');
+        Route::get('/view/{id}', [PenjahitViewController::class, 'update'])->name('penjahit.update');
         Route::put('/update/{id}', [PenjahitUpdateController::class, 'updatePut'])->name('penjahit.update_put');
         Route::delete('/delete', [PenjahitDeleteController::class, 'delete'])->name('penjahit.delete');
     });
 
+    Route::group(['prefix' => 'katalog'], function () {
+        Route::get('', [KatalogViewController::class, 'view'])->name('katalog');
+
+        Route::get('/view-kategori/{id}', [KatalogViewController::class, 'viewKategori'])->name('katalog.kategori.view');
+        Route::put('/update-kategori/{id}', [KatalogUpdateController::class, 'updatePutKategori'])->name('katalog.kategori.update_put');
+        Route::delete('/delete-kategori', [KatalogDeleteController::class, 'deleteKategori'])->name('katalog.kategori.delete');
+
+        Route::get('/view-baju/{id}', [KatalogViewController::class, 'viewBaju'])->name('katalog.baju.view');
+        Route::put('/update-baju/{id}', [KatalogUpdateController::class, 'updatePutBaju'])->name('katalog.baju.update_put');
+        Route::delete('/delete-baju', [KatalogDeleteController::class, 'deleteBaju'])->name('katalog.baju.delete');
+    });
 });

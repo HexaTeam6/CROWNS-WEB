@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin\Penjahit;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Penjahit\PenjahitUpdateRequest;
 use App\Models\User;
 use App\Models\Penjahit;
 use Illuminate\Http\Request;

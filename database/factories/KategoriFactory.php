@@ -23,7 +23,7 @@ class KategoriFactory extends Factory
     public function definition()
     {
         return [
-            'nama' => Str::random(15)
+            'nama' => $this->faker->word()
         ];
     }
 }

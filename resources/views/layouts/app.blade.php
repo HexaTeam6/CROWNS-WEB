@@ -64,9 +64,9 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="examples/register.html">
-                <i class="ni ni-circle-08 text-pink"></i>
-                <span class="nav-link-text">Register</span>
+              <a class="nav-link" href="{{ route('katalog') }}">
+              <i class="ni text-primary justify-content-center"><img src="{{ asset('assets/img/icons/common/clothes.svg') }}" class="ni text-primary" style="width: 15px; height: 15px;"></i>
+                <span class="nav-link-text">Katalog</span>
               </a>
             </li>
           </ul>

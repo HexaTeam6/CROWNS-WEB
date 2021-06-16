@@ -137,7 +137,7 @@
 			input.value = id;
 			frm.action = action;
 			if(id_penjahit) penjahit_input.value = id_penjahit;
-			if(id_konsumen) konsumen_input.value = 0;
+			if(id_konsumen) konsumen_input.value = null;
 			})
 		});
 		deleteButtonsKonsumen.forEach( btn => { //handler tombol konsumen
@@ -155,7 +155,7 @@
 			const konsumen_input = document.getElementById('konsumen-id');
 			input.value = id;
 			frm.action = action;
-			if(id_penjahit) penjahit_input.value = 0;
+			if(id_penjahit) penjahit_input.value = null;
 			if(id_konsumen) konsumen_input.value = id_konsumen;
 			})
 		});
