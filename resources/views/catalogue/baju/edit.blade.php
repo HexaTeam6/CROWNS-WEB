@@ -54,7 +54,10 @@
 								<div class="col-lg-6">
 									<div class="form-group">
 										<label class="form-control-label" for="input-last-name">Jenis Kelamin</label>
-										<input type="text" id="input-last-name" class="form-control" placeholder="Last name" value="{{ $baju->jenis_kelamin }}" name="jenis_kelamin">
+										<select class="form-control" name="jenis_kelamin">
+                      <option value="L">laki-laki</option>
+                      <option value="P">perempuan</option>
+                    </select>
 									</div>
 								</div>
 							</div>
