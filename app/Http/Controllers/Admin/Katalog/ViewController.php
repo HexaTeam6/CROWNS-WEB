@@ -15,8 +15,13 @@ class ViewController extends Controller
         return view('catalogue.index', compact(['list_kategori', 'list_baju']));
     }
 
+    public function viewKategori($id) {
+        $kategori = Kategori::findOrFail($id);
+        return view('catalogue.kategori.edit', compact(['kategori']));
+    }
+
     public function viewBaju ($id) {
         $baju = Baju::findOrFail($id);
-        return view('catalogue.edit', compact(['baju']));
+        return view('catalogue.baju.edit', compact(['baju']));
     }
 }

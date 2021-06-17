@@ -18,6 +18,12 @@
 							<div class="col">
 								<h3 class="mb-0">Kategori Katalog</h3>
 							</div>
+							<div class="col">
+								<a href="{{ route('katalog.kategori.create') }}" class="btn btn-sm btn-primary float-right">
+									<i class="ni ni-fat-add text-white mr-1"></i>
+									buat kategori
+								</a>
+							</div>
 						</div>
 					</div>
 					<div class="table-responsive">
@@ -57,6 +63,12 @@
 						<div class="row align-items-center">
 							<div class="col">
 								<h3 class="mb-0">Baju</h3>
+							</div>
+							<div class="col">
+								<a href="{{ route('katalog.baju.create') }}" class="btn btn-sm btn-primary float-right">
+									<i class="ni ni-fat-add text-white mr-1"></i>
+									buat baju
+								</a>
 							</div>
 						</div>
 					</div>

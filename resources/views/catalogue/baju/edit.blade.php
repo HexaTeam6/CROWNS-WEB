@@ -6,20 +6,22 @@
 	<div class="container-fluid">
 		<div class="header-body">
 			@include('components.header.link')
+
+			<!-- message -->
+			@if(Session::has('success'))
+			<div class="alert alert-success">
+					{{Session::get('success')}}
+			</div>
+			@endif
+					@if(Session::has('gagal'))
+			<div class="alert alert-danger">
+					{{Session::get('gagal')}}
+			</div>
+			@endif
 		</div>
 	</div>
 </div>
-<!-- Success message -->
-		@if(Session::has('success'))
-		<div class="alert alert-success">
-				{{Session::get('success')}}
-		</div>
-		@endif
-        @if(Session::has('gagal'))
-		<div class="alert alert-danger">
-				{{Session::get('gagal')}}
-		</div>
-		@endif
+
 <!-- Page content -->
 <div class="container-fluid mt--6">
 	<div class="row">
@@ -40,7 +42,7 @@
 						@csrf
 						@method('PUT')
 						<input type="hidden" value="{{ $baju->id }}">
-						<h6 class="heading-small text-muted mb-4">User information</h6>
+						<h6 class="heading-small text-muted mb-4">Info Baju</h6>
 						<div class="pl-lg-4">
 							<div class="row">
 								<div class="col-lg-6">
@@ -70,7 +72,7 @@
 
 						<div class="pl-lg-4">
 							<div class="form-group">
-								<img src="{{ $baju->foto }}" alt="">
+								<img src="{{ asset('gallery/images') . '/' . $baju->foto }}" alt="">
 								<input type="file" class="form-control" id="image" name="image" value="{{ old('image') }}"/>  
 								@if ($errors->has('image'))
 								<div class="error">

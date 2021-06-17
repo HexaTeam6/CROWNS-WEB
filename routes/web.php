@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\Konsumen\ViewController as KonsumenViewController
 use App\Http\Controllers\Admin\Penjahit\DeleteController as PenjahitDeleteController;
 use App\Http\Controllers\Admin\Penjahit\UpdateController as PenjahitUpdateController;
 use App\Http\Controllers\Admin\Penjahit\ViewController as PenjahitViewController;
+use App\Http\Controllers\Admin\Katalog\CreateController as KatalogCreateController;
 use App\Http\Controllers\Admin\Katalog\ViewController as KatalogViewController;
 use App\Http\Controllers\Admin\Katalog\UpdateController as KatalogUpdateController;
 use App\Http\Controllers\Admin\Katalog\DeleteController as KatalogDeleteController;
@@ -52,10 +53,14 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth.role:admin'], funct
     Route::group(['prefix' => 'katalog'], function () {
         Route::get('', [KatalogViewController::class, 'view'])->name('katalog');
 
+        Route::get('/create-kategori', [KatalogCreateController::class, 'createKategori'])->name('katalog.kategori.create');
+        Route::post('/create-kategori', [KatalogCreateController::class, 'storeKategori'])->name('katalog.kategori.store');
         Route::get('/view-kategori/{id}', [KatalogViewController::class, 'viewKategori'])->name('katalog.kategori.view');
         Route::put('/update-kategori/{id}', [KatalogUpdateController::class, 'updatePutKategori'])->name('katalog.kategori.update_put');
         Route::delete('/delete-kategori', [KatalogDeleteController::class, 'deleteKategori'])->name('katalog.kategori.delete');
 
+        Route::get('/create-baju', [KatalogCreateController::class, 'createBaju'])->name('katalog.baju.create');
+        Route::post('/create-baju', [KatalogCreateController::class, 'storeBaju'])->name('katalog.baju.store');
         Route::get('/view-baju/{id}', [KatalogViewController::class, 'viewBaju'])->name('katalog.baju.view');
         Route::put('/update-baju/{id}', [KatalogUpdateController::class, 'updatePutBaju'])->name('katalog.baju.update_put');
         Route::delete('/delete-baju', [KatalogDeleteController::class, 'deleteBaju'])->name('katalog.baju.delete');
