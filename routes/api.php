@@ -46,5 +46,6 @@ Route::prefix('pesanan')->group(function () {
         Route::post('/create', [PesananController::class, 'create']);
         Route::post('/updateDetail', [PesananController::class, 'updateDetail']);
         Route::post('/uploadDesignCustom', [PesananController::class, 'uploadDesignCustom']);
+        Route::post('/updateJemput', [PesananController::class, 'updateJemput']);
     });
 });

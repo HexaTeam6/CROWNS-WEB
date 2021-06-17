@@ -20,8 +20,6 @@ class Pesanan extends Model
         'updated_at'
     ];
 
-
-
     public function designKustom()
     {
         return $this->hasMany(DesignKostum::class, 'id_pesanan');
@@ -40,5 +38,15 @@ class Pesanan extends Model
     public function penjahit()
     {
         return $this->belongsTo(Penjahit::class, 'id_penjahit');
+    }
+
+    public function alamatJemput()
+    {
+        return $this->hasOne(LokasiPenjemputan::class, 'id_pesanan');
+    }
+
+    public function pembayaran()
+    {
+        return $this->hasOne(Pembayaran::class, 'id_pesanan');
     }
 }
