@@ -29,13 +29,15 @@ class Penjahit extends Model
         return $this->belongsTo(User::class, 'id_user');
     }
 
-    public function baju()
-    {
+    public function baju() {
         return $this->belongsToMany(Baju::class, 'memiliki_katalog', 'id_penjahit', 'id_baju')->as('memiliki_table')->withTimestamps();
     }
 
-    public function pesanan()
-    {
+    public function pesanan() {
         return $this->hasMany(Pesanan::class, 'id_penjahit');
+    }
+
+    public function memiliki_katalog() {
+        return $this->hasMany(MemilikiKatalog::class, 'id_penjahit', 'id');
     }
 }

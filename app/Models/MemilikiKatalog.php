@@ -10,4 +10,12 @@ class MemilikiKatalog extends Model
     use HasFactory;
     protected $table = 'memiliki_katalog';
     protected $fillable = ['id_penjahit, id_baju'];
+
+    public function baju() {
+        return $this->belongsTo(Baju::class, 'id_baju', 'id');
+    }
+
+    public function penjahit() {
+        return $this->belongsTo(Penjahit::class, 'id_penjahit', 'id');
+    }
 }
