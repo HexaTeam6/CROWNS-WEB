@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Konsumen;
 use App\Models\Pesanan;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -62,9 +63,9 @@ class PesananController extends APIController
         }
 
         $konsumen = Konsumen::where('id_user', $request->user()->id)->first();
-        $pesanan = Pesanan::find($request->id_pesanan)->where('id_konsumen', $konsumen->id)->first();
+        $pesanan = Pesanan::find($request->id_pesanan);
 
-        if (!$pesanan || $pesanan->status_pesanan != 1) {
+        if ($pesanan->id_konsumen != $konsumen->id || $pesanan->status_pesanan != 1) {
             return $this->sendError('Pesanan tidak ditemukan');
         }
 
@@ -100,9 +101,9 @@ class PesananController extends APIController
         }
 
         $konsumen = Konsumen::where('id_user', $request->user()->id)->first();
-        $pesanan = Pesanan::find($request->id_pesanan)->where('id_konsumen', $konsumen->id)->first();
+        $pesanan = Pesanan::find($request->id_pesanan);
 
-        if (!$pesanan) {
+        if ($pesanan->id_konsumen != $konsumen->id) {
             return $this->sendError('Pesanan tidak ditemukan');
         }
 
@@ -136,5 +137,62 @@ class PesananController extends APIController
         DB::commit();
 
         return $this->sendResponse($pesanan->designKustom()->get(), 'Design kustom berhasil ditambahkan');
+    }
+
+    public function updateJemput(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id_pesanan' => 'required|exists:pesanan,id',
+            'dijemput' => 'required|in:0,1',
+            'kode_pos' => 'required_if:dijemput,1|numeric',
+            'kecamatan' => 'required_if:dijemput,1',
+            'kota' => 'required_if:dijemput,1',
+            'alamat' => 'required_if:dijemput,1',
+            'waktu' => 'required_if:dijemput,1|date'
+        ]);
+
+        if ($validator->fails()) {
+            return $this->sendError('Validasi gagal', $validator->errors(), 400);
+        }
+
+        $konsumen = Konsumen::where('id_user', $request->user()->id)->first();
+        $pesanan = Pesanan::find($request->id_pesanan);
+
+        if ($pesanan->id_konsumen != $konsumen->id || $pesanan->status_pesanan != 2) {
+            return $this->sendError('Pesanan tidak ditemukan');
+        }
+
+        DB::beginTransaction();
+
+        try {
+
+            if ($request->dijemput == 1) {
+                $input = $request->except('id_pesanan', 'dijemput');
+                $input['waktu'] = Carbon::parse($input['waktu'])->format('Y-m-d H:i:s');
+                $pesanan->alamatJemput()->create($input);
+            }
+
+            $pesanan->update([
+                'status_pesanan' => 3
+            ]);
+
+            $pesanan->pembayaran()->create([
+                'status_pembayaran' => 1
+            ]);
+
+        } catch (\Exception $e) {
+            DB::rollback();
+            return $this->sendError('Update alamat penjemputan gagal',  $e->getMessage(), 500);
+        }
+
+        DB::commit();
+
+        $response['pembayaran'] = $pesanan->pembayaran;
+
+        if ($request->dijemput == 1) {
+            $response['alamat_jemput'] = $pesanan->alamatJemput;
+        }
+
+        return $this->sendResponse($response, 'Update alamat penjemputan berhasil');
     }
 }
