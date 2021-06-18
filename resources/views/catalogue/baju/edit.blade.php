@@ -55,8 +55,8 @@
 									<div class="form-group">
 										<label class="form-control-label" for="input-last-name">Jenis Kelamin</label>
 										<select class="form-control" name="jenis_kelamin">
-                      <option value="L">laki-laki</option>
-                      <option value="P">perempuan</option>
+                      <option value="L" {{ $baju->jenis_kelamin == 'L' ? 'selected' : '' }}>laki-laki</option>
+                      <option value="P" {{ $baju->jenis_kelamin == 'L' ? '' : 'selected' }}>perempuan</option>
                     </select>
 									</div>
 								</div>

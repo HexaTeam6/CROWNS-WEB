@@ -56,8 +56,20 @@
 								</div>
 								<div class="col-lg-6">
 									<div class="form-group">
+										@if($user->penjahit)
 										<label class="form-control-label" for="input-last-name">Jenis Kelamin</label>
-										<input type="text" id="input-last-name" class="form-control" placeholder="Last name" value="{{ $user->penjahit ? $user->penjahit->jenis_kelamin : $user->konsumen->jenis_kelamin }}" name="jenis_kelamin">
+										<select class="form-control" name="jenis_kelamin">
+                      <option value="L" {{ $user->penjahit->jenis_kelamin == 'L' ? 'selected' : '' }}>laki-laki</option>
+                      <option value="P" {{ $user->penjahit->jenis_kelamin == 'L' ? '' : 'selected' }}>perempuan</option>
+                    </select>
+										@endif
+										@if($user->konsumen)
+										<label class="form-control-label" for="input-last-name">Jenis Kelamin</label>
+										<select class="form-control" name="jenis_kelamin">
+                      <option value="L" {{ $user->konsumen->jenis_kelamin == 'L' ? 'selected' : '' }}>laki-laki</option>
+                      <option value="P" {{ $user->konsumen->jenis_kelamin == 'L' ? '' : 'selected' }}>perempuan</option>
+                    </select>
+										@endif
 									</div>
 								</div>
 							</div>
