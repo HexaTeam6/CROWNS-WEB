@@ -5,6 +5,17 @@
 		<div class="container-fluid">
 			<div class="header-body">
 				@include('components.header.link')
+				<!-- message -->
+			@if(Session::has('success'))
+			<div class="alert alert-success">
+					{{Session::get('success')}}
+			</div>
+			@endif
+					@if(Session::has('gagal'))
+			<div class="alert alert-danger">
+					{{Session::get('gagal')}}
+			</div>
+			@endif
 			</div>
 		</div>
 	</div>

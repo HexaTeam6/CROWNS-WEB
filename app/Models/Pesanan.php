@@ -19,17 +19,7 @@ class Pesanan extends Model
         'created_at',
         'updated_at'
     ];
-
-    public function designKustom()
-    {
-        return $this->hasMany(DesignKostum::class, 'id_pesanan');
-    }
-
-    public function detailPesanan()
-    {
-        return $this->hasMany(DetailPesanan::class, 'id_pesanan');
-    }
-
+    
     public function pembeli()
     {
         return $this->belongsTo(Konsumen::class, 'id_konsumen');
@@ -40,6 +30,11 @@ class Pesanan extends Model
         return $this->belongsTo(Penjahit::class, 'id_penjahit');
     }
 
+    public function baju()
+    {
+        return $this->belongsTo(Baju::class, 'id_baju');
+    }
+    
     public function alamatJemput()
     {
         return $this->hasOne(LokasiPenjemputan::class, 'id_pesanan');
@@ -48,5 +43,15 @@ class Pesanan extends Model
     public function pembayaran()
     {
         return $this->hasOne(Pembayaran::class, 'id_pesanan');
+    }
+    
+    public function designKustom()
+    {
+        return $this->hasMany(DesignKostum::class, 'id_pesanan');
+    }
+
+    public function detailPesanan()
+    {
+        return $this->hasMany(DetailPesanan::class, 'id_pesanan');
     }
 }

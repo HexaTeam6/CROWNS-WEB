@@ -21,12 +21,15 @@ class Baju extends Model
         return $this->belongsTo(Kategori::class, 'id_kategori');
     }
 
+    public function penjahit() {
+        return $this->belongsToMany(Penjahit::class, 'memiliki_katalog', 'id_baju', 'id_penjahit')->as('memiliki_table')->withTimestamps();
+    }
+    
     public function pesanan() {
         return $this->hasMany(Pesanan::class, 'id_baju');
     }
 
-    public function penjahit()
-    {
-        return $this->belongsToMany(Penjahit::class, 'memiliki_katalog', 'id_baju', 'id_penjahit')->as('memiliki_table')->withTimestamps();
+    public function memiliki() {
+        return $this->hasMany(MemilikiKatalog::class, 'id_baju');
     }
 }
