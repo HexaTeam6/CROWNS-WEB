@@ -69,6 +69,12 @@
                 <span class="nav-link-text">Katalog</span>
               </a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('pesanan') }}">
+                <i class="ni ni-credit-card text-info"></i>
+                <span class="nav-link-text">Pesanan</span>
+              </a>
+            </li>
           </ul>
           <!-- Divider -->
           <hr class="my-3">

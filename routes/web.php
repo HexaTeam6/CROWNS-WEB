@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\Katalog\CreateController as KatalogCreateControll
 use App\Http\Controllers\Admin\Katalog\ViewController as KatalogViewController;
 use App\Http\Controllers\Admin\Katalog\UpdateController as KatalogUpdateController;
 use App\Http\Controllers\Admin\Katalog\DeleteController as KatalogDeleteController;
+use App\Http\Controllers\Admin\Pesanan\ViewController as PesananViewController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\UpdateController;
 use Illuminate\Support\Facades\Auth;
@@ -64,5 +65,9 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth.role:admin'], funct
         Route::get('/view-baju/{id}', [KatalogViewController::class, 'viewBaju'])->name('katalog.baju.view');
         Route::put('/update-baju/{id}', [KatalogUpdateController::class, 'updatePutBaju'])->name('katalog.baju.update_put');
         Route::delete('/delete-baju', [KatalogDeleteController::class, 'deleteBaju'])->name('katalog.baju.delete');
+    });
+
+    Route::group(['prefix' => 'pesanan'], function () {
+        Route::get('', [PesananViewController::class, 'view'])->name('pesanan');
     });
 });

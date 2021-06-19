@@ -38,9 +38,9 @@ class CreateController extends Controller
         return redirect()->back()->with('success', 'berhasil ditambahkan');
     }
 
+    /* image handler */
     public function storeImage(Request $request, $id)
     {
-        /* image handler */
         $image = $request->image;
         $image_name = '';
         if ($image !== null) {
