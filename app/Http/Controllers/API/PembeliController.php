@@ -28,6 +28,7 @@ class PembeliController extends APIController
 
         if (Auth::check()) {
             $response['token'] = Auth::user()->createToken('Crowns Pembeli')->accessToken;
+            $response['id_user'] = Auth::user()->id;
 
             return $this->sendResponse($response, 'Login berhasil');
         } else {
@@ -76,6 +77,7 @@ class PembeliController extends APIController
         DB::commit();
 
         $response['token'] =  $user->createToken('Crowns Pembeli')->accessToken;
+        $response['id_user'] = $user->id;
         return $this->sendResponse($response, 'Pembeli berhasil terdaftar');
     }
 

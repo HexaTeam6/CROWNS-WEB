@@ -28,6 +28,7 @@ class PenjahitController extends APIController
 
         if(Auth::check()) {
             $response['token'] = Auth::user()->createToken('Crowns Penjahit')->accessToken;
+            $response['id_user'] = Auth::user()->id;
 
             return $this->sendResponse($response, 'Login berhasil');
         } else {
@@ -83,6 +84,7 @@ class PenjahitController extends APIController
         DB::commit();
 
         $response['token'] =  $user->createToken('Crowns Penjahit')->accessToken;
+        $response['id_user'] = $user->id;
         return $this->sendResponse($response, 'Penjahit berhasil terdaftar');
         
     }
