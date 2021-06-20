@@ -28,6 +28,7 @@ class DeleteController extends Controller
         try{
             $bajus = Baju::where('id_kategori', $kategori->id)->get();
             foreach($bajus as $baju) {
+                $this->setToNullPesanan($baju->id);
                 $this->deleteBajuUtil($baju->id);
             }
             $kategori->delete();
