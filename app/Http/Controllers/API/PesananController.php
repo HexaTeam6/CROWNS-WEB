@@ -173,7 +173,7 @@ class PesananController extends APIController
             if ($request->dijemput == 1) {
                 $input = $request->except('id_pesanan', 'dijemput');
                 $input['waktu'] = Carbon::parse($input['waktu'])->format('Y-m-d H:i:s');
-                $pesanan->alamatJemput()->create($input);
+                $pesanan->lokasiPenjemputan()->create($input);
             }
 
             $pesanan->update([
@@ -194,7 +194,7 @@ class PesananController extends APIController
         $response['pembayaran'] = $pesanan->pembayaran;
 
         if ($request->dijemput == 1) {
-            $response['alamat_jemput'] = $pesanan->alamatJemput;
+            $response['alamat_jemput'] = $pesanan->lokasiPenjemputan;
         }
 
         return $this->sendResponse($response, 'Update alamat penjemputan berhasil');
