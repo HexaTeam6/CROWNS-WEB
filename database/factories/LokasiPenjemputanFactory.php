@@ -23,12 +23,12 @@ class LokasiPenjemputanFactory extends Factory
     public function definition()
     {
         return [
-            'id_pesanan' => Pesanan::all()->random()->id,
+            // 'id_pesanan' => Pesanan::all()->random()->id,
             'kode_pos' => $this->faker->numberBetween(600000, 699999),
             'kecamatan' => $this->faker->city,
             'kota' => $this->faker->city,
             'alamat' => $this->faker->address,
-            'waktu' => $this->faker->time(),
+            'waktu' => $this->faker->dateTime(),
             'instruksi' => $this->faker->sentence()
         ];
     }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Baju;
 use App\Models\Kategori;
 use App\Models\MemilikiKatalog;
+use App\Models\Pesanan;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -19,15 +20,6 @@ class DeleteController extends Controller
     
     public function getPesan() {
         return $this->pesan;
-    }
-
-    protected function deleteBajuUtil($id)
-    {
-        $baju = Baju::findOrFail($id);
-        $memiliki_katalog = MemilikiKatalog::where('id_baju', $baju->id);
-        $memiliki_katalog->delete();
-        $baju->delete();
-        return 0;
     }
 
     public function deleteKategori(Request $request)
@@ -50,6 +42,7 @@ class DeleteController extends Controller
     public function deleteBaju(Request $request)
     {
         try{
+            $this->setToNullPesanan($request->id);
             $this->deleteBajuUtil($request->id);
             $this->setPesan(['success', 'berhasil dihapus']);
         } catch(Exception $e) {
@@ -57,5 +50,21 @@ class DeleteController extends Controller
         }
         $pesan = $this->getPesan();
         return redirect()->back()->with($pesan[0], $pesan[1]);
+    }
+    
+    protected function deleteBajuUtil($id)
+    {
+        $baju = Baju::findOrFail($id);
+        $memiliki_katalog = MemilikiKatalog::where('id_baju', $baju->id);
+        $memiliki_katalog->delete();
+        $baju->delete();
+        return 0;
+    }
+
+    protected function setToNullPesanan($id)
+    {
+        $pesanan = Pesanan::where('id_baju', $id);
+        $pesanan->update(array('id_baju' => null));
+        return 0;
     }
 }

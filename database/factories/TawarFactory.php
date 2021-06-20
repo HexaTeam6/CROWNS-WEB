@@ -23,7 +23,7 @@ class TawarFactory extends Factory
     public function definition()
     {
         return [
-            'id_pesanan' => Pesanan::all()->random()->id,
+            // 'id_pesanan' => Pesanan::all()->random()->id,
             'hari_tawar' => $this->faker->date(),
             'jumlah_penawaran' => $this->faker->randomFloat(null, 1000, 50000),
             'status_penawaran' => $this->faker->randomElement(['R', 'A']),

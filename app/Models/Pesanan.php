@@ -35,7 +35,7 @@ class Pesanan extends Model
         return $this->belongsTo(Baju::class, 'id_baju');
     }
     
-    public function alamatJemput()
+    public function lokasiPenjemputan()
     {
         return $this->hasOne(LokasiPenjemputan::class, 'id_pesanan');
     }
@@ -47,11 +47,16 @@ class Pesanan extends Model
     
     public function designKustom()
     {
-        return $this->hasMany(DesignKostum::class, 'id_pesanan');
+        return $this->hasOne(DesignKostum::class, 'id_pesanan');
     }
 
     public function detailPesanan()
     {
         return $this->hasMany(DetailPesanan::class, 'id_pesanan');
+    }
+
+    public function tawar()
+    {
+        return $this->hasMany(Tawar::class, 'id_pesanan');
     }
 }

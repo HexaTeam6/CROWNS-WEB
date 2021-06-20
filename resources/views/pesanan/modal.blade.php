@@ -10,13 +10,14 @@
         </button>
       </div>
       <div class="modal-body">
-        Apakah Anda yakin menghapus data ini?
+        Apakah Anda yakin memvalidasi pembayaran ini?
+        <img src="{{ asset('gallery/images/foto-61.png') }}" alt="unavailable">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-        <form method="POST" class="form-delete" name="form-delete-name" id="myform">
+        <form method="POST" class="form-validate" name="form-validate-name" id="myform">
           @csrf
-          @method('DELETE')
+          @method('PUT')
           <input type="hidden" name="id" id="btn-id">
           <button type="submit" class="btn btn-primary">Hapus</button>
         </form>

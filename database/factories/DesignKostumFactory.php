@@ -23,7 +23,7 @@ class DesignKostumFactory extends Factory
     public function definition()
     {
         return [
-            'id_pesanan' => Pesanan::all()->random()->id,
+            // 'id_pesanan' => Pesanan::all()->random()->id,
             'foto' => $this->faker->word(),
             'deskripsi' => $this->faker->sentence()
         ];

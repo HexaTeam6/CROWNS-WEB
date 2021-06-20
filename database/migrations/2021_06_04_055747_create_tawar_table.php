@@ -19,7 +19,7 @@ class CreateTawarTable extends Migration
             $table->date('hari_tawar')->nullable();
             $table->float('jumlah_penawaran')->nullable();
             $table->string('status_penawaran')->nullable();
-            $table->dateTime('created_at');
+            $table->timestamps();
             
             $table->foreign('id_pesanan')->references('id')->on('pesanan');
         });

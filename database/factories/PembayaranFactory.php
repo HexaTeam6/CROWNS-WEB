@@ -23,7 +23,7 @@ class PembayaranFactory extends Factory
     public function definition()
     {
         return [
-            'id_pesanan' =>  Pesanan::all()->random()->id,
+            // 'id_pesanan' =>  Pesanan::all()->random()->id,
             'biaya_jahit' => $this->faker->randomFloat(null, 20000, 1000000),
             'biaya_material' => $this->faker->randomFloat(null, 20000, 1000000),
             'biaya_kirim' => $this->faker->randomFloat(null, 0, 50000),

@@ -28,7 +28,7 @@ class PesananFactory extends Factory
             'id_penjahit' => Penjahit::all()->random()->id,
             'id_konsumen' => Konsumen::all()->random()->id,
             'id_baju' => Baju::all()->random()->id,
-            'jumlah' => $this->faker->random_int(1, 40),
+            'jumlah' => $this->faker->numberBetween(1, 40),
             'biaya_total' => $this->faker->randomFloat(null, 30000, 1000000),
             'status_pesanan' => $this->faker->randomElement(['B', 'S'])
         ];

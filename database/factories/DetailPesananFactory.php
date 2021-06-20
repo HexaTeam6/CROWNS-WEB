@@ -23,14 +23,14 @@ class DetailPesananFactory extends Factory
     public function definition()
     {
         return [
-            'id_pesanan' => Pesanan::all()->random()->id,
+            // 'id_pesanan' => Pesanan::all()->random()->id,
             'nama_lengkap' => $this->faker->name(),
-            'lengan' => $this->faker->randomFloat(null, 20, 30),
-            'pinggang' => $this->faker->randomFloat(null, 20, 40),
-            'dada' => $this->faker->randomFloat(null, 20, 30),
-            'leher' => $this->faker->randomFloat(null, 20, 30),
-            'tinggi_tubuh' => $this->faker->randomFloat(null, 140, 180),
-            'berat_badan' => $this->faker->randomFloat(null, 30, 70),
+            'lengan' => $this->faker->randomFloat(null, 20.0, 30.0),
+            'pinggang' => $this->faker->randomFloat(null, 20.0, 40.0),
+            'dada' => $this->faker->randomFloat(null, 20.0, 30.0),
+            'leher' => $this->faker->randomFloat(null, 20.0, 30.0),
+            'tinggi_tubuh' => $this->faker->randomFloat(null, 140.0, 180.0),
+            'berat_badan' => $this->faker->randomFloat(null, 30.0, 70.0),
             'instruksi_pembuatan' => $this->faker->sentence()
         ];
     }

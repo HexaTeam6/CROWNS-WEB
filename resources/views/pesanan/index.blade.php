@@ -60,6 +60,7 @@
 										{{ $pesanan->biaya_total }}
 									</td>
                   <td>
+										<i class="ni {{ $pesanan->status_pesanan == 'S' ? 'ni-check-bold text-success' : 'ni-fat-remove text-danger' }}"></i>
 										{{ $pesanan->status_pesanan == 'S' ? 'Sudah Divalidasi' : 'Belum Divalidasi' }}
 									</td>
 									<td>
@@ -74,7 +75,7 @@
 				</div>
 			</div>
 		</div>
-		@include('components.modal')
+		@include('pesanan.modal')
 		@include('components.footer')
 	</div>
 @endsection
