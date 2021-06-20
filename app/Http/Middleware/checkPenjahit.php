@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class checkPembeli
+class checkPenjahit
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class checkPembeli
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($request->user()->role != 'pembeli') {
+        if ($request->user()->role != 'penjahit') {
             return response()->json([
                 'success' => false,
                 'message' => 'Unauthorized'

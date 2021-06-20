@@ -35,7 +35,7 @@ class Pesanan extends Model
         return $this->belongsTo(Baju::class, 'id_baju');
     }
     
-    public function lokasiPenjemputan()
+    public function alamatJemput()
     {
         return $this->hasOne(LokasiPenjemputan::class, 'id_pesanan');
     }
@@ -57,6 +57,6 @@ class Pesanan extends Model
 
     public function tawar()
     {
-        return $this->hasMany(Tawar::class, 'id_pesanan');
+        return $this->hasOne(Tawar::class, 'id_pesanan');
     }
 }

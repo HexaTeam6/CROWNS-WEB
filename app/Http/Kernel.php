@@ -64,5 +64,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'auth.role' => \App\Http\Middleware\AuthRole::class,
         'checkPembeli' => \App\Http\Middleware\checkPembeli::class,
+        'checkPenjahit' => \App\Http\Middleware\checkPenjahit::class,
     ];
 }

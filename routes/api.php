@@ -47,5 +47,12 @@ Route::prefix('pesanan')->group(function () {
         Route::post('/updateDetail', [PesananController::class, 'updateDetail']);
         Route::post('/uploadDesignCustom', [PesananController::class, 'uploadDesignCustom']);
         Route::post('/updateJemput', [PesananController::class, 'updateJemput']);
+        Route::post('/ajukanTawar', [PesananController::class, 'ajukanTawar']);
+    });
+
+    Route::middleware(['auth:api', 'checkPenjahit'])->group(function () {
+        Route::post('/updateHarga', [PesananController::class, 'updateHarga']);
+        Route::post('/terimaTawar', [PesananController::class, 'terimaTawar']);
+        Route::post('/tolakTawar', [PesananController::class, 'tolakTawar']);
     });
 });
