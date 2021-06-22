@@ -64,8 +64,8 @@
 										{{ $pesanan->status_pesanan == 'S' ? 'Sudah Divalidasi' : 'Belum Divalidasi' }}
 									</td>
 									<td>
-										<a href="#" class="btn btn-sm btn-primary">Lihat</a>
-										<button type="button" data-toggle="modal" data-target="#exampleModal" pesanan-id="{{$pesanan->id}}" class="btn-val-pesanan btn btn-sm btn-danger" url="#">Validasi</a>	
+										<a href="{{ route('pesanan.view.pembayaran', ['id' => $pesanan->id]) }}" class="btn btn-sm btn-primary">Lihat</a>
+										<button type="button" data-toggle="modal" data-target="#exampleModal" pesanan-id="{{$pesanan->id}}" class="btn-val-pesanan btn btn-sm btn-danger" url="{{ route('pesanan.validate', ['id' => $pesanan->id]) }}" url-image="{{ $pesanan->pembayaran->bukti_pembayaran ? $pesanan->pembayaran->bukti_pembayaran[0]->foto : '' }}">Validasi</a>	
 									</td>
 								</tr>
 								@endforeach
@@ -84,15 +84,20 @@
 	<script>
 		const validateButtonspesanan = document.querySelectorAll('.btn-val-pesanan');
 		var frm = document.getElementById('myform');
+		var show_image = document.getElementById('bukti-bayar');
 		validateButtonspesanan.forEach( btn => { //handler tombol pesanan
 			btn.addEventListener('click', (e) => {
 			const id = e.srcElement.getAttribute('pesanan-id');
 			const action = e.srcElement.getAttribute('url');
+			const img_src = e.srcElement.getAttribute('url-image');
+			const img_alt = img_src;
 			console.log(id);
-			console.log(action);
+			console.log(img_src);
 			const input = document.getElementById('btn-id');
 			input.value = id;
 			frm.action = action;
+			show_image.src = img_src;
+			show_image.alt = img_alt;
 			})
 		});
 	</script>

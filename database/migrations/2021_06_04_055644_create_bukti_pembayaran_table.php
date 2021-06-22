@@ -17,7 +17,6 @@ class CreateBuktiPembayaranTable extends Migration
             $table->id();
             $table->unsignedBigInteger('id_pembayaran')->nullable();
             $table->string('foto')->nullable();
-            $table->string('status_bukti_pembayaran')->nullable();
             
             $table->foreign('id_pembayaran')->references('id')->on('pembayaran');
             $table->timestamps();

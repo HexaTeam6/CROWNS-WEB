@@ -10,8 +10,7 @@ class BuktiPembayaran extends Model
     use HasFactory;
     protected $table = 'bukti_pembayaran';
     protected $fillable = [
-        'foto', 
-        'status_bukti_pembayaran'
+        'foto'
     ];
 
     public function pembayaran() {

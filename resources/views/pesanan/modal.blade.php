@@ -11,7 +11,7 @@
       </div>
       <div class="modal-body">
         Apakah Anda yakin memvalidasi pembayaran ini?
-        <img src="{{ asset('gallery/images/foto-61.png') }}" alt="unavailable">
+        <img alt="unavailable" id="bukti-bayar">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
@@ -19,7 +19,7 @@
           @csrf
           @method('PUT')
           <input type="hidden" name="id" id="btn-id">
-          <button type="submit" class="btn btn-primary">Hapus</button>
+          <button type="submit" class="btn btn-primary">Validasi</button>
         </form>
       </div>
     </div>

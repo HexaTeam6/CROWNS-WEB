@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\Katalog\ViewController as KatalogViewController;
 use App\Http\Controllers\Admin\Katalog\UpdateController as KatalogUpdateController;
 use App\Http\Controllers\Admin\Katalog\DeleteController as KatalogDeleteController;
 use App\Http\Controllers\Admin\Pesanan\ViewController as PesananViewController;
+use App\Http\Controllers\Admin\Pesanan\UpdateController as PesananUpdateController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\UpdateController;
 use Illuminate\Support\Facades\Auth;
@@ -69,5 +70,9 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth.role:admin'], funct
 
     Route::group(['prefix' => 'pesanan'], function () {
         Route::get('', [PesananViewController::class, 'view'])->name('pesanan');
+        Route::put('', [PesananUpdateController::class, 'validasi'])->name('pesanan.validate');
+
+        Route::get('detail-pembayaran/{id}', [PesananViewController::class, 'viewPembayaran'])->name('pesanan.view.pembayaran');
+        Route::put('detail-pembayaran/{id}', [PesananUpdateController::class, 'validasi'])->name('pesanan.validate.pembayaran');
     });
 });

@@ -70,7 +70,7 @@
 							</div>
 						</div>
 						<hr class="my-4" />
-						<!-- Address -->
+						<!-- Deskripsi -->
 						<h6 class="heading-small text-muted mb-4">Informasi Tambahan</h6>
 						
 						<div class="pl-lg-4">
