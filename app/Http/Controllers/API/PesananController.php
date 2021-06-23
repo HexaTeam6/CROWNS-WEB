@@ -363,4 +363,76 @@ class PesananController extends APIController
 
         return $this->sendResponse($tawaran, 'Menolak penawaran berhasil');
     }
+
+    // fungsi untuk pembeli memilih metode pembayaran
+    // dan mengupload bukti pembayaran
+    public function bayar(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id_pesanan' => 'required|exists:pesanan,id',
+            'metode_pembayaran' => 'required',
+            'list_bukti' => 'required|array',
+            'list_bukti.*.foto' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return $this->sendError('Validasi gagal', $validator->errors(), 400);
+        }
+
+        $konsumen = Konsumen::where('id_user', $request->user()->id)->first();
+        $pesanan = Pesanan::find($request->id_pesanan);
+
+        if ($pesanan->id_konsumen != $konsumen->id) {
+            return $this->sendError('Pesanan tidak ditemukan');
+        }
+
+        $pembayaran = $pesanan->pembayaran;
+
+        if (!$pembayaran || $pembayaran->status_pembayaran != 2) {
+            return $this->sendError('Pembayaran tidak ditemukan');
+        }
+
+        $listBukti = array();
+
+        DB::beginTransaction();
+
+        try {
+            foreach ($request->list_bukti as $bukti) {
+                $image_64 = $bukti['foto'];
+
+                $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+                $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
+                $image = str_replace($replace, '', $image_64);
+                $image = str_replace(' ', '+', $image);
+
+                do {
+                    $imageName = 'buktiPembayaran/'.Str::random(10) . '.' . $extension;
+                } while (Storage::disk('public')->exists($imageName));
+
+                Storage::disk('public')->put($imageName, base64_decode($image));
+
+                $bukti = $pembayaran->bukti_pembayaran()->create([
+                    'foto' => asset('storage/'.$imageName)
+                ]);
+
+                array_push($listBukti, $bukti);
+
+                $pembayaran->update([
+                    'metode_pembayaran' => $request->metode_pembayaran,
+                    'status_pembayaran' => 3
+                ]);
+
+                $pesanan->update([
+                    'status_pesanan' => 4
+                ]);
+            }
+        } catch (\Exception $e) {
+            DB::rollback();
+            return $this->sendError('Upload bukti pembayaran gagal',  $e->getMessage(), 500);
+        }
+
+        DB::commit();
+
+        return $this->sendResponse($listBukti, 'Upload bukti pembayaran berhasil');
+    }
 }

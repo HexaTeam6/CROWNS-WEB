@@ -48,6 +48,7 @@ Route::prefix('pesanan')->group(function () {
         Route::post('/uploadDesignCustom', [PesananController::class, 'uploadDesignCustom']);
         Route::post('/updateJemput', [PesananController::class, 'updateJemput']);
         Route::post('/ajukanTawar', [PesananController::class, 'ajukanTawar']);
+        Route::post('/bayar', [PesananController::class, 'bayar']);
     });
 
     Route::middleware(['auth:api', 'checkPenjahit'])->group(function () {
