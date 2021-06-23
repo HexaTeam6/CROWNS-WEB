@@ -20,7 +20,7 @@ class CreatePembayaranTable extends Migration
             $table->float('biaya_material')->nullable();
             $table->float('biaya_kirim')->nullable();
             $table->float('biaya_jemput')->nullable();
-            $table->string('status_pembayaran')->nullable();
+            $table->string('status_pembayaran', 2)->nullable();
             $table->string('metode_pembayaran')->nullable();
 
             $table->foreign('id_pesanan')->references('id')->on('pesanan');

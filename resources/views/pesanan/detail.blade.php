@@ -33,7 +33,13 @@
 						<div class="col-11">
 							<h3 class="mb-0">
 								Pesanan
-								<i class="ni {{ $pembayaran->pesanan->status_pesanan == 'S' ? 'ni-check-bold text-success' : 'ni-fat-remove text-danger' }}"></i>
+								<i class="ni 
+									<?php 
+										if ($pembayaran->status_pembayaran == '4') echo 'ni-check-bold text-success'; 
+										if ($pembayaran->status_pembayaran == '3') echo 'ni-fat-delete text-yellow';
+										if ($pembayaran->status_pembayaran == '2') echo 'ni-fat-remove text-danger';
+									?>"
+								></i>
 							</h3>
 						</div>
 						<a class="btn btn-neutral float-right col-1" href="{{ route('pesanan') }}">Back</a>
@@ -107,11 +113,16 @@
 
 						<hr class="my-4" />
 						<h6 class="heading-small text-muted mb-4">Bukti Pembayaran</h6>
-						@foreach($pembayaran->bukti_pembayaran as $bukti)
+						@foreach($pembayaran->buktiPembayaran as $bukti)
 						<img src="{{ $bukti->foto }}" alt="fail to load: {{ $bukti->foto }}">
 						<hr class="my-4" />
 						@endforeach
 						<input type="submit" class="btn btn-neutral float-right" value="Validasi">
+						<select class="btn float-right pr-5" name="validasi">
+							<option value="4" class="text-success">Terima Validasi</option>
+							<option value="3" class="text-yellow">Tunda Validasi</option>
+							<option value="2" class="text-danger">Tolak Validasi</option>
+						</select>
 					</form>
 				</div>
 

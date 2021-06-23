@@ -27,7 +27,7 @@
 					<div class="card-header border-0">
 						<div class="row align-items-center">
 							<div class="col">
-								<h3 class="mb-0">Pesanan</h3>
+								<h3 class="mb-0">Pesanan<i class="ni ni-fat-delete text-yellow"></i></h3>
 							</div>
 						</div>
 					</div>
@@ -40,12 +40,12 @@
                   <th scope="col">Tanggal</th>
 									<th scope="col">Jumlah</th>
 									<th scope="col">Total</th>
-									<th scope="col">Status</th>
                   <th scope="col">Action</th>
 								</tr>
 							</thead>
 							<tbody>
 								@foreach($list_pesanan as $pesanan)
+								@if($pesanan->pembayaran->status_pembayaran == '3')
 								<tr>
 									<td>
 										{{ $pesanan->id }}
@@ -56,18 +56,109 @@
 									<td>
 										{{ $pesanan->jumlah }}
 									</td>
-                  <td>
+									<td>
 										{{ $pesanan->biaya_total }}
-									</td>
-                  <td>
-										<i class="ni {{ $pesanan->status_pesanan == 'S' ? 'ni-check-bold text-success' : 'ni-fat-remove text-danger' }}"></i>
-										{{ $pesanan->status_pesanan == 'S' ? 'Sudah Divalidasi' : 'Belum Divalidasi' }}
 									</td>
 									<td>
 										<a href="{{ route('pesanan.view.pembayaran', ['id' => $pesanan->id]) }}" class="btn btn-sm btn-primary">Lihat</a>
-										<button type="button" data-toggle="modal" data-target="#exampleModal" pesanan-id="{{$pesanan->id}}" class="btn-val-pesanan btn btn-sm btn-danger" url="{{ route('pesanan.validate', ['id' => $pesanan->id]) }}" url-image="{{ $pesanan->pembayaran->bukti_pembayaran ? $pesanan->pembayaran->bukti_pembayaran[0]->foto : '' }}">Validasi</a>	
+										<button type="button" data-toggle="modal" data-target="#validasiModal" pesanan-id="{{$pesanan->id}}" class="btn-val-pesanan btn btn-sm btn-danger" url="{{ route('pesanan.validate', ['id' => $pesanan->id]) }}" url-image="{{ $pesanan->pembayaran->buktiPembayaran ? $pesanan->pembayaran->buktiPembayaran->first()->foto : 'kosong woy' }}">Validasi</a>
 									</td>
 								</tr>
+								@endif
+								@endforeach
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xl-6">
+				<div class="card">
+					<div class="card-header border-0">
+						<div class="row align-items-center">
+							<div class="col">
+								<h3 class="mb-0">Pesanan<i class="ni ni-check-bold text-success"></i></h3>
+							</div>
+						</div>
+					</div>
+					<div class="table-responsive">
+						<!-- Projects table -->
+						<table class="table align-items-center table-flush">
+							<thead class="thead-light">
+								<tr>
+									<th scope="col">id</th>
+                  <th scope="col">Tanggal</th>
+									<th scope="col">Tgl Validasi</th>
+                  <th scope="col">Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach($list_pesanan as $pesanan)
+								@if($pesanan->pembayaran->status_pembayaran == '4')
+								<tr>
+									<td>
+										{{ $pesanan->id }}
+									</td>
+                  <td>
+										{{ $pesanan->created_at }}
+									</td>
+									<td>
+										{{ $pesanan->pembayaran->updated_at }}
+									</td>
+									<td>
+										<a href="{{ route('pesanan.view.pembayaran', ['id' => $pesanan->id]) }}" class="btn btn-sm btn-primary">Lihat</a>
+										<button type="button" data-toggle="modal" data-target="#validasiModal" pesanan-id="{{$pesanan->id}}" class="btn-val-pesanan btn btn-sm btn-danger" url="{{ route('pesanan.validate', ['id' => $pesanan->id]) }}" url-image="{{ $pesanan->pembayaran->buktiPembayaran ? $pesanan->pembayaran->buktiPembayaran->first()->foto : 'kosong woy' }}">Validasi</a>
+									</td>
+								</tr>
+								@endif
+								@endforeach
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-xl-6">
+				<div class="card">
+					<div class="card-header border-0">
+						<div class="row align-items-center">
+							<div class="col">
+								<h3 class="mb-0">Pesanan<i class="ni ni-fat-remove text-danger"></i></h3>
+							</div>
+						</div>
+					</div>
+					<div class="table-responsive">
+						<!-- Projects table -->
+						<table class="table align-items-center table-flush">
+							<thead class="thead-light">
+								<tr>
+									<th scope="col">id</th>
+                  <th scope="col">Tanggal</th>
+									<th scope="col">Tgl Validasi</th>
+                  <th scope="col">Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach($list_pesanan as $pesanan)
+								@if($pesanan->pembayaran->status_pembayaran == '2')
+								<tr>
+									<td>
+										{{ $pesanan->id }}
+									</td>
+                  <td>
+										{{ $pesanan->created_at }}
+									</td>
+									<td>
+										{{ $pesanan->pembayaran->updated_at }}
+									</td>
+									<td>
+										<a href="{{ route('pesanan.view.pembayaran', ['id' => $pesanan->id]) }}" class="btn btn-sm btn-primary">Lihat</a>
+										<button type="button" data-toggle="modal" data-target="#validasiModal" pesanan-id="{{$pesanan->id}}" class="btn-val-pesanan btn btn-sm btn-danger" url="{{ route('pesanan.validate', ['id' => $pesanan->id]) }}" url-image="{{ $pesanan->pembayaran->buktiPembayaran ? $pesanan->pembayaran->buktiPembayaran->first()->foto : 'kosong woy' }}">Validasi</a>
+									</td>
+								</tr>
+								@endif
 								@endforeach
 							</tbody>
 						</table>

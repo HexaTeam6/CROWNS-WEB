@@ -10,7 +10,7 @@ class UpdateController extends Controller
 {
     public function validasi(Request $request) {
         $pesanan = Pesanan::findOrFail($request->id);
-        $pesanan->update(['status_pesanan' => 'S']);
+        $pesanan->pembayaran->update(['status_pembayaran' => $request->validasi]);
         return redirect()->back()->with('success', 'berhasil memvalidasi');
     }
 }

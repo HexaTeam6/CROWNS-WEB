@@ -28,7 +28,7 @@ class PembayaranFactory extends Factory
             'biaya_material' => $this->faker->randomFloat(null, 20000, 1000000),
             'biaya_kirim' => $this->faker->randomFloat(null, 0, 50000),
             'biaya_jemput' => $this->faker->randomFloat(null, 0, 50000),
-            'status_pembayaran' => $this->faker->randomElement(['B', 'S']),
+            'status_pembayaran' => $this->faker->randomElement(['2', '3', '4']),
             'metode_pembayaran' => $this->faker->randomElement(['BANK', 'COD'])
         ];
     }

@@ -16,7 +16,7 @@ class ViewController extends Controller
     }
 
     public function view() {
-        $list_pesanan = Pesanan::all();
+        $list_pesanan = Pesanan::all()->sortBy('created_at');
         return view('pesanan.index', compact('list_pesanan'));
     }
 

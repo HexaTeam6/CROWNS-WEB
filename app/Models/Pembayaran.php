@@ -24,7 +24,7 @@ class Pembayaran extends Model
         return $this->belongsTo(Pesanan::class, 'id_pesanan');
     }
 
-    public function bukti_pembayaran()
+    public function buktiPembayaran()
     {
         return $this->hasMany(BuktiPembayaran::class, 'id_pembayaran');
     }
