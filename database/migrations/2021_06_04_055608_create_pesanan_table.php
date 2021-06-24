@@ -21,6 +21,7 @@ class CreatePesananTable extends Migration
             $table->integer('jumlah')->nullable();
             $table->float('biaya_total')->nullable();
             $table->string('status_pesanan')->nullable();
+            $table->float('rating')->nullable();
             $table->timestamps();
             
             $table->foreign('id_penjahit')->references('id')->on('penjahit');
