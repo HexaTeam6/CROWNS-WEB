@@ -5,6 +5,8 @@
 		<div class="container-fluid">
 			<div class="header-body">
 				@include('components.header.link')
+				<h6 class="h2 text-white d-inline-block mb-0">Total Pesanan: {{ $list_diterima->count()+$list_belum->count()+$list_ditolak->count() }}</h6>
+				@include('pesanan.statistic')
 				<!-- message -->
 			@if(Session::has('success'))
 			<div class="alert alert-success">
@@ -44,8 +46,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								@foreach($list_pesanan as $pesanan)
-								@if($pesanan->pembayaran->status_pembayaran == '3')
+								@foreach($list_belum as $pesanan)
 								<tr>
 									<td>
 										{{ $pesanan->id }}
@@ -64,7 +65,6 @@
 										<button type="button" data-toggle="modal" data-target="#validasiModal" pesanan-id="{{$pesanan->id}}" class="btn-val-pesanan btn btn-sm btn-danger" url="{{ route('pesanan.validate', ['id' => $pesanan->id]) }}" url-image="{{ $pesanan->pembayaran->buktiPembayaran ? $pesanan->pembayaran->buktiPembayaran->first()->foto : 'kosong woy' }}">Validasi</a>
 									</td>
 								</tr>
-								@endif
 								@endforeach
 							</tbody>
 						</table>
@@ -95,7 +95,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								@foreach($list_pesanan as $pesanan)
+								@foreach($list_diterima as $pesanan)
 								@if($pesanan->pembayaran->status_pembayaran == '4')
 								<tr>
 									<td>
@@ -141,7 +141,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								@foreach($list_pesanan as $pesanan)
+								@foreach($list_ditolak as $pesanan)
 								@if($pesanan->pembayaran->status_pembayaran == '2')
 								<tr>
 									<td>

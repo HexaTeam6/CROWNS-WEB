@@ -58,12 +58,6 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="examples/login.html">
-                <i class="ni ni-key-25 text-info"></i>
-                <span class="nav-link-text">Login</span>
-              </a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" href="{{ route('katalog') }}">
               <i class="ni text-primary justify-content-center"><img src="{{ asset('assets/img/icons/common/clothes.svg') }}" class="ni text-primary" style="width: 15px; height: 15px;"></i>
                 <span class="nav-link-text">Katalog</span>
