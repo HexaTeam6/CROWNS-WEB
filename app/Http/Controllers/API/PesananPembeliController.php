@@ -320,7 +320,7 @@ class PesananPembeliController extends APIController
         $konsumen = Konsumen::where('id_user', $request->user()->id)->first();
         $pesanan = Pesanan::find($request->id_pesanan);
 
-        if ($pesanan->id_konsumen != $konsumen->id || $pesanan->status_pesanan < 4 || $pesanan->rating != NULL) {
+        if ($pesanan->id_konsumen != $konsumen->id || $pesanan->status_pesanan != 5 || $pesanan->rating != NULL) {
             return $this->sendError('Pesanan tidak ditemukan');
         }
 
