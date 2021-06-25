@@ -41,17 +41,18 @@ class PenjahitController extends APIController
     {
         $validator = Validator::make($request->all(), [
             'username' => 'required|max:30|unique:users',
-            'email' => 'required|email|max:50|unique:users',
+            'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:8',
-            'nama' => 'required|max:50',
+            'nama' => 'required|string|max:255',
             'jenis_kelamin' => 'required|max:1',
             'no_hp' => 'required|numeric|digits_between:1,16',
             'tanggal_lahir' => 'required|date',
             'no_rekening' => 'required|numeric',
             'bank' => 'required',
             'kodepos' => 'required|numeric|digits_between:1,6',
-            'kecamatan' => 'required|max:20',
-            'kota' => 'required|max:20',
+            'kecamatan' => 'required|string|max:255',
+            'kota' => 'required|string|max:255',
+            'provinsi' => 'required|string|max:255',
             'alamat' => 'required|max:1024',
             'list_id_baju' => 'required|array',
             'list_id_baju.*.id_baju' => 'required|exists:baju,id'
@@ -69,7 +70,7 @@ class PenjahitController extends APIController
             $inputUser['password'] = bcrypt($inputUser['password']);
             $user = User::create($inputUser);
 
-            $inputPenjahit = $request->except('username', 'email', 'password', 'list_jam_buka', 'list_id_baju');
+            $inputPenjahit = $request->except('username', 'email', 'password', 'list_id_baju');
             $inputPenjahit['id_user'] = $user->id;
             $inputPenjahit['tanggal_lahir'] = Carbon::parse($inputPenjahit['tanggal_lahir'])->format('Y-m-d');
             $penjahit = Penjahit::create($inputPenjahit);

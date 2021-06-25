@@ -20,6 +20,7 @@ class Konsumen extends Model
         'kodepos',
         'kecamatan',
         'kota',
+        'provinsi',
         'alamat'
     ];
 

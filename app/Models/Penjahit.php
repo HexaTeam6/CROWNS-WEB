@@ -22,6 +22,7 @@ class Penjahit extends Model
         'kodepos',
         'kecamatan',
         'kota',
+        'provinsi',
         'alamat'
     ];
 

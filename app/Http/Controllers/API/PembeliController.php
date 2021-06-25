@@ -41,15 +41,16 @@ class PembeliController extends APIController
     {
         $validator = Validator::make($request->all(), [
             'username' => 'required|max:30|unique:users',
-            'email' => 'required|email|max:50|unique:users',
+            'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:8',
-            'nama' => 'required|max:50',
+            'nama' => 'required|string|max:255',
             'jenis_kelamin' => 'required|max:1',
             'no_hp' => 'required|numeric|digits_between:1,16',
             'tanggal_lahir' => 'required|date',
             'kodepos' => 'required|numeric|digits_between:1,6',
-            'kecamatan' => 'required|max:20',
-            'kota' => 'required|max:20',
+            'kecamatan' => 'required|string|max:255',
+            'kota' => 'required|string|max:255',
+            'provinsi' => 'required|string|max:255',
             'alamat' => 'required|max:1024'
         ]);
 

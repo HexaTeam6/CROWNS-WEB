@@ -25,6 +25,7 @@ class CreatePenjahitTable extends Migration
             $table->string('kodepos')->nullable();
             $table->string('kecamatan')->nullable();
             $table->string('kota')->nullable();
+            $table->string('provinsi')->nullable();
             $table->string('alamat')->nullable();
             
             $table->foreign('id_user')->references('id')->on('users');
