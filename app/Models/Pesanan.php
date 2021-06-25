@@ -16,6 +16,7 @@ class Pesanan extends Model
         'jumlah',
         'biaya_total',
         'status_pesanan',
+        'rating',
         'created_at',
         'updated_at'
     ];

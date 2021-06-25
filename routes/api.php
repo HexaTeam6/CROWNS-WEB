@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\PembeliController;
 use App\Http\Controllers\API\PenjahitController;
-use App\Http\Controllers\API\PesananController;
+use App\Http\Controllers\API\PesananPembeliController;
+use App\Http\Controllers\API\PesananPenjualController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -43,17 +45,18 @@ Route::prefix('katalog')->group(function () {
 
 Route::prefix('pesanan')->group(function () {
     Route::middleware(['auth:api', 'checkPembeli'])->group(function () {
-        Route::post('/create', [PesananController::class, 'create']);
-        Route::post('/updateDetail', [PesananController::class, 'updateDetail']);
-        Route::post('/uploadDesignCustom', [PesananController::class, 'uploadDesignCustom']);
-        Route::post('/updateJemput', [PesananController::class, 'updateJemput']);
-        Route::post('/ajukanTawar', [PesananController::class, 'ajukanTawar']);
-        Route::post('/bayar', [PesananController::class, 'bayar']);
+        Route::post('/create', [PesananPembeliController::class, 'create']);
+        Route::post('/updateDetail', [PesananPembeliController::class, 'updateDetail']);
+        Route::post('/uploadDesignCustom', [PesananPembeliController::class, 'uploadDesignCustom']);
+        Route::post('/updateJemput', [PesananPembeliController::class, 'updateJemput']);
+        Route::post('/ajukanTawar', [PesananPembeliController::class, 'ajukanTawar']);
+        Route::post('/bayar', [PesananPembeliController::class, 'bayar']);
+        Route::post('/rate', [PesananPembeliController::class, 'rate']);
     });
 
     Route::middleware(['auth:api', 'checkPenjahit'])->group(function () {
-        Route::post('/updateHarga', [PesananController::class, 'updateHarga']);
-        Route::post('/terimaTawar', [PesananController::class, 'terimaTawar']);
-        Route::post('/tolakTawar', [PesananController::class, 'tolakTawar']);
+        Route::post('/updateHarga', [PesananPenjualController::class, 'updateHarga']);
+        Route::post('/terimaTawar', [PesananPenjualController::class, 'terimaTawar']);
+        Route::post('/tolakTawar', [PesananPenjualController::class, 'tolakTawar']);
     });
 });
