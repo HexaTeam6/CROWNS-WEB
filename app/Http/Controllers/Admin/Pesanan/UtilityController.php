@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin\Pesanan;
 use App\Http\Controllers\Controller;
 use App\Models\Pesanan;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Http\Request;
 
 class UtilityController extends Controller
 {

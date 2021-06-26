@@ -818,126 +818,128 @@ if($map.length) {
     google.maps.event.addDomListener(window, 'load', initMap);
 }
 
-//
-// Bars chart
-//
+/* it's copied to resources/views/dashboard.blade.php */
 
-var BarsChart = (function() {
+// //
+// // Bars chart
+// //
 
-	//
-	// Variables
-	//
+// var BarsChart = (function() {
 
-	var $chart = $('#chart-bars');
+// 	//
+// 	// Variables
+// 	//
 
-
-	//
-	// Methods
-	//
-
-	// Init chart
-	function initChart($chart) {
-
-		// Create chart
-		var ordersChart = new Chart($chart, {
-			type: 'bar',
-			data: {
-				labels: ['Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-				datasets: [{
-					label: 'Sales',
-					data: [25, 20, 30, 22, 17, 29]
-				}]
-			}
-		});
-
-		// Save to jQuery object
-		$chart.data('chart', ordersChart);
-	}
+// 	var $chart = $('#chart-bars');
 
 
-	// Init chart
-	if ($chart.length) {
-		initChart($chart);
-	}
+// 	//
+// 	// Methods
+// 	//
 
-})();
+// 	// Init chart
+// 	function initChart($chart) {
 
-'use strict';
+// 		// Create chart
+// 		var ordersChart = new Chart($chart, {
+// 			type: 'bar',
+// 			data: {
+// 				labels: ['Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+// 				datasets: [{
+// 					label: 'Sales',
+// 					data: [25, 20, 30, 22, 17, 29]
+// 				}]
+// 			}
+// 		});
 
-//
-// Sales chart
-//
-
-var SalesChart = (function() {
-
-  // Variables
-
-  var $chart = $('#chart-sales-dark');
-
-
-  // Methods
-
-  function init($chart) {
-
-    var salesChart = new Chart($chart, {
-      type: 'line',
-      options: {
-        scales: {
-          yAxes: [{
-            gridLines: {
-              lineWidth: 1,
-              color: Charts.colors.gray[900],
-              zeroLineColor: Charts.colors.gray[900]
-            },
-            ticks: {
-              callback: function(value) {
-                if (!(value % 10)) {
-                  return '$' + value + 'k';
-                }
-              }
-            }
-          }]
-        },
-        tooltips: {
-          callbacks: {
-            label: function(item, data) {
-              var label = data.datasets[item.datasetIndex].label || '';
-              var yLabel = item.yLabel;
-              var content = '';
-
-              if (data.datasets.length > 1) {
-                content += '<span class="popover-body-label mr-auto">' + label + '</span>';
-              }
-
-              content += '<span class="popover-body-value">$' + yLabel + 'k</span>';
-              return content;
-            }
-          }
-        }
-      },
-      data: {
-        labels: ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-        datasets: [{
-          label: 'Performance',
-          data: [0, 20, 10, 30, 15, 40, 20, 60, 60]
-        }]
-      }
-    });
-
-    // Save to jQuery object
-
-    $chart.data('chart', salesChart);
-
-  };
+// 		// Save to jQuery object
+// 		$chart.data('chart', ordersChart);
+// 	}
 
 
-  // Events
+// 	// Init chart
+// 	if ($chart.length) {
+// 		initChart($chart);
+// 	}
 
-  if ($chart.length) {
-    init($chart);
-  }
+// })();
 
-})();
+// 'use strict';
+
+// //
+// // Sales chart
+// //
+
+// var SalesChart = (function() {
+
+//   // Variables
+
+//   var $chart = $('#chart-sales-dark');
+
+
+//   // Methods
+
+//   function init($chart) {
+
+//     var salesChart = new Chart($chart, {
+//       type: 'line',
+//       options: {
+//         scales: {
+//           yAxes: [{
+//             gridLines: {
+//               lineWidth: 1,
+//               color: Charts.colors.gray[900],
+//               zeroLineColor: Charts.colors.gray[900]
+//             },
+//             ticks: {
+//               callback: function(value) {
+//                 if (!(value % 10)) {
+//                   return '$' + value + 'k';
+//                 }
+//               }
+//             }
+//           }]
+//         },
+//         tooltips: {
+//           callbacks: {
+//             label: function(item, data) {
+//               var label = data.datasets[item.datasetIndex].label || '';
+//               var yLabel = item.yLabel;
+//               var content = '';
+
+//               if (data.datasets.length > 1) {
+//                 content += '<span class="popover-body-label mr-auto">' + label + '</span>';
+//               }
+
+//               content += '<span class="popover-body-value">$' + yLabel + 'k</span>';
+//               return content;
+//             }
+//           }
+//         }
+//       },
+//       data: {
+//         labels: ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+//         datasets: [{
+//           label: 'Performance',
+//           data: [0, 20, 10, 30, 15, 40, 20, 60, 60]
+//         }]
+//       }
+//     });
+
+//     // Save to jQuery object
+
+//     $chart.data('chart', salesChart);
+
+//   };
+
+
+//   // Events
+
+//   if ($chart.length) {
+//     init($chart);
+//   }
+
+// })();
 
 //
 // Bootstrap Datepicker

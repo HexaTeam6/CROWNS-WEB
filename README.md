@@ -15,7 +15,13 @@ run:
     npm install
     npm run dev
     php artisan migrate:fresh
+    php artisan db:seed
 ```
+
+bila melakukan seed, maka akan ada akun khusus admin
+username: crowns-admin
+email   : crowns-admin-email.@gmail.com
+password: crowns-admin-password-is-so-long
 
 dashboard: https://www.creative-tim.com/product/argon-dashboard
 auth: https://laravel.com/docs/8.x/passport

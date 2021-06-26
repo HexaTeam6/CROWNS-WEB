@@ -23,7 +23,6 @@ class ViewController extends Controller
     }
 
     public function view() {
-        $list_pesanan = Pesanan::all()->sortBy('created_at');
         $list_belum = $this->utility_controller->getPesananBelumDivalidasi();
         $list_diterima = $this->utility_controller->getPesananDiterima();
         $list_ditolak = $this->utility_controller->getPesananDitolak();
