@@ -17,6 +17,7 @@ class Penjahit extends Model
         'jenis_kelamin',
         'no_hp',
         'tanggal_lahir',
+        'nama_rek',
         'no_rekening',
         'bank',
         'kodepos',

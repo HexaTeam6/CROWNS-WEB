@@ -20,6 +20,7 @@ class CreatePenjahitTable extends Migration
             $table->string('jenis_kelamin')->nullable();
             $table->string('no_hp')->nullable();
             $table->date('tanggal_lahir')->nullable();
+            $table->string('nama_rek')->nullable();
             $table->string('no_rekening')->nullable();
             $table->string('bank')->nullable();
             $table->string('kodepos')->nullable();

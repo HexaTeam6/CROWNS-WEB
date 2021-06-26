@@ -47,6 +47,7 @@ class PenjahitController extends APIController
             'jenis_kelamin' => 'required|max:1',
             'no_hp' => 'required|numeric|digits_between:1,16',
             'tanggal_lahir' => 'required|date',
+            'nama_rek' => 'required|string|max:255',
             'no_rekening' => 'required|numeric',
             'bank' => 'required',
             'kodepos' => 'required|numeric|digits_between:1,6',
