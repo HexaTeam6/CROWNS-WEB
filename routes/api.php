@@ -24,13 +24,15 @@ use App\Http\Controllers\API\PesananPenjualController;
 Route::prefix('pembeli')->group(function () {
     Route::post('login', [PembeliController::class, 'login']);
     Route::post('register', [PembeliController::class, 'register']);
-    Route::get('/{id_user}', [PembeliController::class, 'profileByUsersId']);
+    Route::get('/{id_user}', [PembeliController::class, 'profileByUserId']);
+    Route::get('/{id_user}/pesanan', [PembeliController::class, 'pesananPembeliByUserId']);
 });
 
 Route::prefix('penjahit')->group(function () {
     Route::post('login', [PenjahitController::class, 'login']);
     Route::post('register', [PenjahitController::class, 'register']);
-    Route::get('/{id_user}', [PenjahitController::class, 'profileByUsersId']);
+    Route::get('/{id_user}', [PenjahitController::class, 'profileByUserId']);
+    Route::get('/{id_user}/pesanan', [PenjahitController::class, 'pesananPenjahitByUserId']);
 });
 
 Route::prefix('kategori')->group(function () {

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PesananResource;
 use App\Models\Penjahit;
 use App\Models\User;
 use Carbon\Carbon;
@@ -93,7 +94,7 @@ class PenjahitController extends APIController
 
     // fungsi untuk mengambil profil penjahit
     // berdasarkan id user
-    public function profileByUsersId(Request $request)
+    public function profileByUserId(Request $request)
     {
         $user = User::find($request->id_user);
 
@@ -107,5 +108,21 @@ class PenjahitController extends APIController
         $response['katalog'] = $user->penjahit()->first()->baju;
 
         return $this->sendResponse($response, 'Profil penjahit berhasil diambil');
+    }
+
+    // fungsi untuk mengambil histori pesanan selesai penjahit
+    // berdasarkan id user
+    public function pesananPenjahitByUserId(Request $request)
+    {
+        $user = User::find($request->id_user);
+
+        if(!$user || $user->role != 'penjahit') {
+            return $this->sendError("penjahit tidak ditemukan");
+        }
+
+        $pesanan = $user->penjahit->pesanan()
+                    ->where('status_pesanan', 5)->latest()->get();
+
+        return $this->sendResponse(PesananResource::collection($pesanan), 'Histori pesanan selesai penjahit berhasil diambil');
     }
 }

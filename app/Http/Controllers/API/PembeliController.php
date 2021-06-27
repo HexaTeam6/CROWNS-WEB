@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PesananResource;
 use App\Models\Konsumen;
 use App\Models\User;
 use Carbon\Carbon;
@@ -83,8 +84,8 @@ class PembeliController extends APIController
     }
 
     // fungsi untuk mengambil profil pembeli
-    // berdasarkan id users
-    public function profileByUsersId(Request $request)
+    // berdasarkan id user
+    public function profileByUserId(Request $request)
     {
         $user = User::find($request->id_user);
 
@@ -97,5 +98,21 @@ class PembeliController extends APIController
         $response['email'] = $user->email;
 
         return $this->sendResponse($response, 'Profil pembeli berhasil diambil');
+    }
+
+    // fungsi untuk mengambil histori pesanan selesai pembeli
+    // berdasarkan id user
+    public function pesananPembeliByUserId(Request $request)
+    {
+        $user = User::find($request->id_user);
+
+        if(!$user || $user->role != 'pembeli') {
+            return $this->sendError("Pembeli tidak ditemukan");
+        }
+
+        $pesanan = $user->konsumen->pesanan()
+                    ->where('status_pesanan', 5)->latest()->get();
+
+        return $this->sendResponse(PesananResource::collection($pesanan), 'Histori pesanan selesai pembeli berhasil diambil');
     }
 }
