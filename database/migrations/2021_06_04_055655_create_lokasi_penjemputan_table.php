@@ -19,6 +19,7 @@ class CreateLokasiPenjemputanTable extends Migration
             $table->string('kode_pos')->nullable();
             $table->string('kecamatan')->nullable();
             $table->string('kota')->nullable();
+            $table->string('provinsi')->nullable();
             $table->string('alamat')->nullable();
             $table->dateTime('waktu')->nullable();
             $table->string('instruksi')->nullable();

@@ -14,6 +14,7 @@ class LokasiPenjemputan extends Model
         'kode_pos',
         'kecamatan',
         'kota',
+        'provinsi',
         'alamat',
         'waktu',
         'instruksi'
