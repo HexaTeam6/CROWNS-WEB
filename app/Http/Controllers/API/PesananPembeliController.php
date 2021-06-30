@@ -149,6 +149,7 @@ class PesananPembeliController extends APIController
             'kode_pos' => 'required_if:dijemput,1|numeric',
             'kecamatan' => 'required_if:dijemput,1',
             'kota' => 'required_if:dijemput,1',
+            'provinsi' => 'required_if:dijemput,1',
             'alamat' => 'required_if:dijemput,1',
             'waktu' => 'required_if:dijemput,1|date'
         ]);

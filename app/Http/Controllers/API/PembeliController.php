@@ -45,7 +45,7 @@ class PembeliController extends APIController
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:8',
             'nama' => 'required|string|max:255',
-            'jenis_kelamin' => 'required|max:1',
+            'jenis_kelamin' => 'required|string|max:1',
             'no_hp' => 'required|numeric|digits_between:1,16',
             'tanggal_lahir' => 'required|date',
             'kodepos' => 'required|numeric|digits_between:1,6',
@@ -115,4 +115,36 @@ class PembeliController extends APIController
 
         return $this->sendResponse(PesananResource::collection($pesanan), 'Histori pesanan selesai pembeli berhasil diambil');
     }
+
+    // Fungsi untuk mengupdate profil pembeli
+    public function updateProfil(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'nama' => 'sometimes|string|max:255',
+            'jenis_kelamin' => 'sometimes|string|max:1',
+            'no_hp' => 'sometimes|numeric|digits_between:1,16',
+            'tanggal_lahir' => 'sometimes|date',
+            'kodepos' => 'sometimes|numeric|digits_between:1,6',
+            'kecamatan' => 'sometimes|string|max:255',
+            'kota' => 'sometimes|string|max:255',
+            'provinsi' => 'sometimes|string|max:255',
+            'alamat' => 'sometimes|max:1024'
+        ]);
+
+        if ($validator->fails()) {
+            return $this->sendError('Validasi gagal', $validator->errors(), 400);
+        }
+
+        $input = $request->all();
+
+        if(isset($input['tanggal_lahir'])) {
+            $input['tanggal_lahir'] = Carbon::parse($input['tanggal_lahir'])->format('Y-m-d');
+        }
+
+        $konsumen = Konsumen::where('id_user', $request->user()->id)->first();
+        $konsumen->update($input);
+
+        return $this->sendResponse($konsumen, 'Profil pembeli berhasil diupdate');
+    }
+
 }
