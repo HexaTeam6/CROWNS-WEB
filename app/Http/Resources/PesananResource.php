@@ -21,14 +21,15 @@ class PesananResource extends JsonResource
             'id_baju' => $this->id_baju,
             'jumlah' => $this->jumlah,
             'biaya_total' => $this->biaya_total,
-            'status_pesansn' => $this->status_pesansn,
+            'status_pesanan' => $this->status_pesanan,
             'rating' => $this->rating,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'detail_pesanan' => $this->detailPesanan,
             'designKustom' => $this->designKustom,
             'lokasi_penjemputan' => $this->lokasiPenjemputan,
-            'pembayaran' => $this->pembayaran
+            'pembayaran' => $this->pembayaran,
+            'penawaran' => $this->penawaran
         ];
     }
 }

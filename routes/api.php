@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\PembeliController;
 use App\Http\Controllers\API\PenjahitController;
+use App\Http\Controllers\API\PesananController;
 use App\Http\Controllers\API\PesananPembeliController;
 use App\Http\Controllers\API\PesananPenjualController;
 
@@ -63,4 +64,11 @@ Route::prefix('pesanan')->group(function () {
         Route::post('/terimaTawar', [PesananPenjualController::class, 'terimaTawar']);
         Route::post('/tolakTawar', [PesananPenjualController::class, 'tolakTawar']);
     });
+
+    Route::middleware('auth:api')->group(function () {
+        Route::get('/pembayaranValid', [PesananController::class, 'pembayaranValid']);
+        Route::get('/pembayaranBelumValid', [PesananController::class, 'pembayaranBelumValid']);
+    });
+
+    Route::get('/{id_pesanan}', [PesananController::class, 'pesananById']);
 });
