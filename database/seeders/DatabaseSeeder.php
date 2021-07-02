@@ -19,14 +19,14 @@ class DatabaseSeeder extends Seeder
                     ->hasAdmin()
                     ->state([
                         'username' => 'crowns-admin',
-                        'email' => 'crowns-admin-email.@gmail.com',
+                        'email' => 'crowns-admin-email@gmail.com',
                         'role' => 'admin',
                         'password' => bcrypt('crowns-admin-password-is-so-long'), // password
                         'remember_token' => Str::random(10)
                     ])
                     ->create();
-        $this->call(UserSeeder::class);
-        $this->call(KatalogSeeder::class);
-        $this->call(PesananSeeder::class);
+        // $this->call(UserSeeder::class);
+        // $this->call(KatalogSeeder::class);
+        // $this->call(PesananSeeder::class);
     }
 }

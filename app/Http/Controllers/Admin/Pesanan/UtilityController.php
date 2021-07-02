@@ -27,8 +27,8 @@ class UtilityController extends Controller
             })
             ->get()
             ->sortBy([
-                ['updated_at', 'desc'],
                 ['created_at', 'asc'],
+                ['updated_at', 'desc'],
             ]);
 
         return $list_pesanan;

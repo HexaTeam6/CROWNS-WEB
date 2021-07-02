@@ -17,7 +17,8 @@ class LokasiPenjemputan extends Model
         'provinsi',
         'alamat',
         'waktu',
-        'instruksi'
+        'instruksi',
+        'tipe'
     ];
 
     public function pesanan()

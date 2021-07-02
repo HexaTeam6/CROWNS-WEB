@@ -17,6 +17,7 @@ class Pesanan extends Model
         'biaya_total',
         'status_pesanan',
         'rating',
+        'kain_sendiri',
         'created_at',
         'updated_at'
     ];

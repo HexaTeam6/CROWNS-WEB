@@ -23,6 +23,7 @@ class CreateLokasiPenjemputanTable extends Migration
             $table->string('alamat')->nullable();
             $table->dateTime('waktu')->nullable();
             $table->string('instruksi')->nullable();
+            $table->integer('tipe')->nullable();
             
             $table->foreign('id_pesanan')->references('id')->on('pesanan');
             $table->timestamps();
