@@ -39,7 +39,7 @@ class Pesanan extends Model
     
     public function lokasiPenjemputan()
     {
-        return $this->hasOne(LokasiPenjemputan::class, 'id_pesanan');
+        return $this->hasMany(LokasiPenjemputan::class, 'id_pesanan');
     }
 
     public function pembayaran()

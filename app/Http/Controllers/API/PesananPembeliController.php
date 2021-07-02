@@ -54,7 +54,8 @@ class PesananPembeliController extends APIController
             'list_detail.*.leher' => 'required|numeric',
             'list_detail.*.tinggi_tubuh' => 'required|numeric',
             'list_detail.*.berat_badan' => 'required|numeric',
-            'list_detail.*.instruksi_pembuatan' => 'required'
+            'list_detail.*.instruksi_pembuatan' => 'required',
+            'kain_sendiri' => 'required|boolean'
         ]);
 
         if ($validator->fails()) {
@@ -75,7 +76,8 @@ class PesananPembeliController extends APIController
 
             $pesanan->update([
                 'jumlah' => $request->jumlah,
-                'status_pesanan' => 2
+                'status_pesanan' => 2,
+                'kain_sendiri' => $request->kain_sendiri
             ]);
         } catch (\Exception $e) {
             DB::rollback();
@@ -145,13 +147,15 @@ class PesananPembeliController extends APIController
     {
         $validator = Validator::make($request->all(), [
             'id_pesanan' => 'required|exists:pesanan,id',
-            'dijemput' => 'required|in:0,1',
-            'kode_pos' => 'required_if:dijemput,1|numeric',
-            'kecamatan' => 'required_if:dijemput,1',
-            'kota' => 'required_if:dijemput,1',
-            'provinsi' => 'required_if:dijemput,1',
-            'alamat' => 'required_if:dijemput,1',
-            'waktu' => 'required_if:dijemput,1|date'
+            'list_lokasi' => 'sometimes|array',
+            'list_lokasi.*.kode_pos' => 'required|numeric',
+            'list_lokasi.*.kecamatan' => 'required',
+            'list_lokasi.*.kota' => 'required',
+            'list_lokasi.*.provinsi' => 'required',
+            'list_lokasi.*.alamat' => 'required',
+            'list_lokasi.*.waktu' => 'required|date',
+            'list_lokasi.*.instruksi' => 'nullable|string',
+            'list_lokasi.*.tipe' => 'required|integer|in:1,2'
         ]);
 
         if ($validator->fails()) {
@@ -169,10 +173,11 @@ class PesananPembeliController extends APIController
 
         try {
 
-            if ($request->dijemput == 1) {
-                $input = $request->except('id_pesanan', 'dijemput');
-                $input['waktu'] = Carbon::parse($input['waktu'])->format('Y-m-d H:i:s');
-                $pesanan->lokasiPenjemputan()->create($input);
+            if (!empty($request->list_lokasi)) {
+                foreach ($request->list_lokasi as $lokasi) {
+                    $lokasi['waktu'] = Carbon::parse($lokasi['waktu'])->format('Y-m-d H:i:s');
+                    $pesanan->lokasiPenjemputan()->create($lokasi);
+                }
             }
 
             $pesanan->update([
@@ -191,10 +196,7 @@ class PesananPembeliController extends APIController
         DB::commit();
 
         $response['pembayaran'] = $pesanan->pembayaran;
-
-        if ($request->dijemput == 1) {
-            $response['alamat_jemput'] = $pesanan->lokasiPenjemputan;
-        }
+        $response['alamat_jemput'] = $pesanan->lokasiPenjemputan;
 
         return $this->sendResponse($response, 'Update alamat penjemputan berhasil');
     }
