@@ -26,7 +26,7 @@ class TawarFactory extends Factory
             // 'id_pesanan' => Pesanan::all()->random()->id,
             'hari_tawar' => $this->faker->date(),
             'jumlah_penawaran' => $this->faker->randomFloat(null, 1000, 50000),
-            'status_penawaran' => $this->faker->randomElement(['R', 'A']),
+            'status_penawaran' => $this->faker->randomElement([1, 2, 3]),
             'created_at' => $this->faker->dateTime()
         ];
     }

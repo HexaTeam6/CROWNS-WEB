@@ -155,7 +155,13 @@
 									</td>
 									<td>
 										<a href="{{ route('pesanan.view.pembayaran', ['id' => $pesanan->id]) }}" class="btn btn-sm btn-primary">Lihat</a>
-										<button type="button" data-toggle="modal" data-target="#validasiModal" pesanan-id="{{$pesanan->id}}" class="btn-val-pesanan btn btn-sm btn-danger" url="{{ route('pesanan.validate', ['id' => $pesanan->id]) }}" url-image="{{ $pesanan->pembayaran->buktiPembayaran ? $pesanan->pembayaran->buktiPembayaran->first()->foto : 'kosong woy' }}">Validasi</a>
+										@if($pesanan->pembayaran && 
+												$pesanan->pembayaran->buktiPembayaran && 
+												$pesanan->pembayaran->buktiPembayaran->first())
+											<button type="button" data-toggle="modal" data-target="#validasiModal" pesanan-id="{{$pesanan->id}}" class="btn-val-pesanan btn btn-sm btn-danger" url="{{ route('pesanan.validate', ['id' => $pesanan->id]) }}" url-image="{{ $pesanan->pembayaran->buktiPembayaran ? $pesanan->pembayaran->buktiPembayaran->first()->foto : 'kosong' }}">Validasi</a>
+										@else
+											<button class="btn-val-pesanan btn btn-sm btn-danger" disabled>bukti kosong</button>
+										@endif
 									</td>
 								</tr>
 								@endif
