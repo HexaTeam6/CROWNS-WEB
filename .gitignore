@@ -26,7 +26,8 @@ app/storage/
 # Laravel 5 & Lumen specific
 public/storage
 public/hot
-public/gallery
+/public/gallery/images/*
+!/public/gallery/images/foto-1.jpg
 
 # Laravel 5 & Lumen specific with changed public path
 public_html/storage

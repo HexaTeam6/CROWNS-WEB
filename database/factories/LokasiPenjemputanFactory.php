@@ -29,7 +29,8 @@ class LokasiPenjemputanFactory extends Factory
             'kota' => $this->faker->city,
             'alamat' => $this->faker->address,
             'waktu' => $this->faker->dateTime(),
-            'instruksi' => $this->faker->sentence()
+            'instruksi' => $this->faker->sentence(),
+            'tipe' => $this->faker->randomElement([1, 2])
         ];
     }
 }
