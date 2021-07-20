@@ -72,3 +72,14 @@ Route::prefix('pesanan')->group(function () {
 
     Route::get('/{id_pesanan}', [PesananController::class, 'pesananById']);
 });
+
+Route::get('/dummy', function () {
+    $foto = file_get_contents(public_path('\\gallery\\images\\' . 'foto-1.jpg'));
+    $foto = base64_encode($foto);
+    $response = [
+        'success' => true,
+        'data'    => $foto,
+        'message' => '',
+    ];
+    return response()->json($response, 200);
+});
