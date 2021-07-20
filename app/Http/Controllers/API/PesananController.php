@@ -16,7 +16,6 @@ class PesananController extends APIController
     // berdasarkan id pesanan
     public function pesananById(Request $request)
     {
-
         $pesanan = Pesanan::find($request->id_pesanan);
 
         if(!$pesanan) {
@@ -73,11 +72,14 @@ class PesananController extends APIController
      * attach photo to the data / pesanan
      */
     public function getPhoto(DBCollection $pesanan): DBCollection {
+        
         try{
             foreach($pesanan as $unit){
-                $foto = file_get_contents(public_path('\\gallery\\images\\' . $unit->foto));
-                $foto = base64_encode($foto);
-                $unit->foto = $foto;
+                foreach($unit->designKustom as $designKustom) {
+                    $foto = file_get_contents(public_path('\\gallery\\images\\' . $designKustom->foto));
+                    $foto = base64_encode($foto);
+                    $designKustom->foto = $foto;
+                }
             }
             return $pesanan;
         } catch (Exception $e) {
