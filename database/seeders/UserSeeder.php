@@ -19,16 +19,16 @@ class UserSeeder extends Seeder
             ->state(['role' => 'penjahit', 
                 'username' => 'penjahit-username',
                 'email' => 'penjahit-email@.com',
-                'password' => 'penjahit-password'
+                'password' => bcrypt('penjahit-password')
             ])
             ->create();
         User::factory()
             ->count(1)
             ->hasKonsumen()
-            ->state(['role' => 'konsumen',
+            ->state(['role' => 'pembeli',
                 'username' => 'konsumen-username',
                 'email' => 'konsumen-email@.com',
-                'password' => 'konsumen-password'
+                'password' => bcrypt('konsumen-password')
             ])
             ->create();
     }
