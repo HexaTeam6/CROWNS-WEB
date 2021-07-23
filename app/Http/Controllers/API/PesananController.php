@@ -64,6 +64,7 @@ class PesananController extends APIController
                     })->orWhere('status_pesanan', 3)->latest()->get();
 
         $pesanan = $this->getPhoto($pesanan);
+        $pesanan = $this->getTawar($pesanan);
 
         return $this->sendResponse(PesananResource::collection($pesanan), 'Pesanan yang pembayarannya belum valid berhasil diambil');
     }
@@ -72,7 +73,6 @@ class PesananController extends APIController
      * attach photo to the data / pesanan
      */
     public function getPhoto(DBCollection $pesanan): DBCollection {
-        
         try{
             foreach($pesanan as $unit){
                 foreach($unit->designKustom as $designKustom) {
@@ -80,6 +80,17 @@ class PesananController extends APIController
                     $foto = base64_encode($foto);
                     $designKustom->foto = $foto;
                 }
+            }
+            return $pesanan;
+        } catch (Exception $e) {
+            return $pesanan;
+        }
+    }
+
+    public function getTawar(DBCollection $pesanan): DBCollection {
+        try{
+            foreach($pesanan as $unit){
+                $unit->penawaran = $unit->tawar;
             }
             return $pesanan;
         } catch (Exception $e) {
