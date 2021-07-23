@@ -29,7 +29,7 @@ class PesananResource extends JsonResource
             'designKustom' => $this->designKustom,
             'lokasi_penjemputan' => $this->lokasiPenjemputan,
             'pembayaran' => $this->pembayaran,
-            'penawaran' => $this->penawaran
+            'penawaran' => $this->tawar
         ];
     }
 }
