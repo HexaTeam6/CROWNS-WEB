@@ -9,7 +9,7 @@ use App\Http\Controllers\API\PenjahitController;
 use App\Http\Controllers\API\PesananController;
 use App\Http\Controllers\API\PesananPembeliController;
 use App\Http\Controllers\API\PesananPenjualController;
-
+use App\Models\Pesanan;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,4 +71,19 @@ Route::prefix('pesanan')->group(function () {
     });
 
     Route::get('/{id_pesanan}', [PesananController::class, 'pesananById']);
+});
+
+Route::get('/dummy', function () {
+    $pesanan = Pesanan::all();
+    $pesanan_last = $pesanan[35];
+    
+    // return response()->json($pesanan_last->designKustom[0]->foto, 200);
+    $foto = file_get_contents(public_path('\\gallery\\images\\' . $pesanan_last->designKustom[0]->foto));
+    $foto = base64_encode($foto);
+    $response = [
+        'success' => true,
+        'data'    => $foto,
+        'message' => '',
+    ];
+    return response()->json($response, 200);
 });

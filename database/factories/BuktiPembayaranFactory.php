@@ -24,7 +24,7 @@ class BuktiPembayaranFactory extends Factory
     {
         return [
             // 'id_pembayaran' => Pembayaran::all()->random()->id,
-            'foto' => $this->faker->word()
+            'foto' => 'foto-1.jpg'
         ];
     }
 }

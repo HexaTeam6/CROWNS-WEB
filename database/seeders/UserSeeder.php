@@ -14,14 +14,22 @@ class UserSeeder extends Seeder
     public function run()
     {
         User::factory()
-            ->count(20)
+            ->count(1)
             ->hasPenjahit()
-            ->state(['role' => 'penjahit'])
+            ->state(['role' => 'penjahit', 
+                'username' => 'penjahit-username',
+                'email' => 'penjahit-email@.com',
+                'password' => bcrypt('penjahit-password')
+            ])
             ->create();
         User::factory()
-            ->count(20)
+            ->count(1)
             ->hasKonsumen()
-            ->state(['role' => 'konsumen'])
+            ->state(['role' => 'pembeli',
+                'username' => 'konsumen-username',
+                'email' => 'konsumen-email@.com',
+                'password' => bcrypt('konsumen-password')
+            ])
             ->create();
     }
 }

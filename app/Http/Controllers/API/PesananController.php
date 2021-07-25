@@ -4,8 +4,11 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Resources\PesananResource;
 use App\Models\Pesanan;
+use Exception;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection as DBCollection;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PesananController extends APIController
 {
@@ -13,7 +16,6 @@ class PesananController extends APIController
     // berdasarkan id pesanan
     public function pesananById(Request $request)
     {
-
         $pesanan = Pesanan::find($request->id_pesanan);
 
         if(!$pesanan) {
@@ -61,6 +63,26 @@ class PesananController extends APIController
                         $query2->where('status_pembayaran', '<>', 4);
                     })->orWhere('status_pesanan', 3)->latest()->get();
 
+        $pesanan = $this->getPhoto($pesanan);
+
         return $this->sendResponse(PesananResource::collection($pesanan), 'Pesanan yang pembayarannya belum valid berhasil diambil');
+    }
+
+    /**
+     * attach photo to the data / pesanan
+     */
+    public function getPhoto(DBCollection $pesanan): DBCollection {
+        try{
+            foreach($pesanan as $unit){
+                foreach($unit->designKustom as $designKustom) {
+                    $foto = file_get_contents(public_path('\\gallery\\images\\' . $designKustom->foto));
+                    $foto = base64_encode($foto);
+                    $designKustom->foto = $foto;
+                }
+            }
+            return $pesanan;
+        } catch (Exception $e) {
+            return $pesanan;
+        }
     }
 }
