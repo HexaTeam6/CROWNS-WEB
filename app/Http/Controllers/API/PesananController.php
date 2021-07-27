@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\API\APIController;
 use App\Http\Resources\PesananResource;
 use App\Models\Pesanan;
 use Exception;
@@ -63,26 +64,6 @@ class PesananController extends APIController
                         $query2->where('status_pembayaran', '<>', 4);
                     })->orWhere('status_pesanan', 3)->latest()->get();
 
-        $pesanan = $this->getPhoto($pesanan);
-
         return $this->sendResponse(PesananResource::collection($pesanan), 'Pesanan yang pembayarannya belum valid berhasil diambil');
-    }
-
-    /**
-     * attach photo to the data / pesanan
-     */
-    public function getPhoto(DBCollection $pesanan): DBCollection {
-        try{
-            foreach($pesanan as $unit){
-                foreach($unit->designKustom as $designKustom) {
-                    $foto = file_get_contents(public_path('\\gallery\\images\\' . $designKustom->foto));
-                    $foto = base64_encode($foto);
-                    $designKustom->foto = $foto;
-                }
-            }
-            return $pesanan;
-        } catch (Exception $e) {
-            return $pesanan;
-        }
     }
 }

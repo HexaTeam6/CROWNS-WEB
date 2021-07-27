@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Baju;
 use Illuminate\Http\Request;
 
-class KatalogController extends ApiController
+class KatalogController extends APIController
 {
     // Fungsi untuk mengambil list semua katalog
     public function index()
