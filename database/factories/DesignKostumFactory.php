@@ -24,7 +24,7 @@ class DesignKostumFactory extends Factory
     {
         return [
             // 'id_pesanan' => Pesanan::all()->random()->id,
-            'foto' => 'foto-1.jpg',
+            'foto' => 'http://127.0.0.1:8000/storage/foto-1.jpg',
             'deskripsi' => $this->faker->sentence()
         ];
     }

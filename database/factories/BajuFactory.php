@@ -28,7 +28,7 @@ class BajuFactory extends Factory
             'nama' => $this->faker->name,
             'jenis_kelamin' => $this->faker->randomElement(['L', 'P']),
             'deskripsi' => $this->faker->sentence(),
-            'foto' => 'foto-1.jpg'
+            'foto' => 'http://127.0.0.1:8000/storage/foto-1.jpg',
         ];
     }
 }
