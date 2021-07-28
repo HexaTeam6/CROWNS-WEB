@@ -78,7 +78,7 @@ class PesananSeeder extends Seeder
             ->count(2)
             ->state(['status_pesanan' => 3])
             ->has(Pembayaran::factory()
-                    ->state(['status_pembayaran' => 2]))
+                    ->state(['status_pembayaran' => 1]))
             ->hasDesignKustom()
             ->hasDetailPesanan()
             ->hasLokasiPenjemputan()
