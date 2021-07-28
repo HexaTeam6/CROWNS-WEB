@@ -84,16 +84,16 @@ class PesananSeeder extends Seeder
             ->hasLokasiPenjemputan()
             ->create();
         
-        //3.2.0
-        Pesanan::factory()
-            ->count(2)
-            ->state(['status_pesanan' => 3])
-            ->has(Pembayaran::factory()
-                    ->state(['status_pembayaran' => 2]))
-            ->hasDesignKustom()
-            ->hasDetailPesanan()
-            ->hasLokasiPenjemputan()
-            ->create();
+        // //3.2.0
+        // Pesanan::factory()
+        //     ->count(2)
+        //     ->state(['status_pesanan' => 3])
+        //     ->has(Pembayaran::factory()
+        //             ->state(['status_pembayaran' => 2]))
+        //     ->hasDesignKustom()
+        //     ->hasDetailPesanan()
+        //     ->hasLokasiPenjemputan()
+        //     ->create();
 
         // 3.2.1
         Pesanan::factory()
@@ -119,17 +119,17 @@ class PesananSeeder extends Seeder
             ->has(Tawar::factory()->state(['status_penawaran' => 2]))
             ->create();
 
-        // 4.2.0
-        Pesanan::factory()
-            ->count(2)
-            ->state(['status_pesanan' => 4])
-            ->has(Pembayaran::factory()
-                    ->has(BuktiPembayaran::factory())
-                    ->state(['status_pembayaran' => 2]))
-            ->hasDesignKustom()
-            ->hasDetailPesanan()
-            ->hasLokasiPenjemputan()
-            ->create();
+        // // 4.2.0
+        // Pesanan::factory()
+        //     ->count(2)
+        //     ->state(['status_pesanan' => 4])
+        //     ->has(Pembayaran::factory()
+        //             ->has(BuktiPembayaran::factory())
+        //             ->state(['status_pembayaran' => 2]))
+        //     ->hasDesignKustom()
+        //     ->hasDetailPesanan()
+        //     ->hasLokasiPenjemputan()
+        //     ->create();
 
         // 4.2.1
         Pesanan::factory()
@@ -157,17 +157,17 @@ class PesananSeeder extends Seeder
             ->has(Tawar::factory()->state(['status_penawaran' => 3]))
             ->create();
 
-        // 4.3.0
-        Pesanan::factory()
-            ->count(2)
-            ->state(['status_pesanan' => 4])
-            ->has(Pembayaran::factory()
-                    ->has(BuktiPembayaran::factory())
-                    ->state(['status_pembayaran' => 3]))
-            ->hasDesignKustom()
-            ->hasDetailPesanan()
-            ->hasLokasiPenjemputan()
-            ->create();
+        // // 4.3.0
+        // Pesanan::factory()
+        //     ->count(2)
+        //     ->state(['status_pesanan' => 4])
+        //     ->has(Pembayaran::factory()
+        //             ->has(BuktiPembayaran::factory())
+        //             ->state(['status_pembayaran' => 3]))
+        //     ->hasDesignKustom()
+        //     ->hasDetailPesanan()
+        //     ->hasLokasiPenjemputan()
+        //     ->create();
 
         // 4.3.1
         Pesanan::factory()
@@ -232,16 +232,16 @@ class PesananSeeder extends Seeder
             ->create();
 
         // 5.4.0  5.4.1  5.4.3
-        Pesanan::factory()
-            ->count(2)
-            ->state(['status_pesanan' => 5])
-            ->has(Pembayaran::factory()
-                    ->has(BuktiPembayaran::factory())
-                    ->state(['status_pembayaran' => 4]))
-            ->hasDesignKustom()
-            ->hasDetailPesanan()
-            ->hasLokasiPenjemputan()
-            ->create();
+        // Pesanan::factory()
+        //     ->count(2)
+        //     ->state(['status_pesanan' => 5])
+        //     ->has(Pembayaran::factory()
+        //             ->has(BuktiPembayaran::factory())
+        //             ->state(['status_pembayaran' => 4]))
+        //     ->hasDesignKustom()
+        //     ->hasDetailPesanan()
+        //     ->hasLokasiPenjemputan()
+        //     ->create();
 
         Pesanan::factory()
             ->count(2)
