@@ -25,9 +25,9 @@ class DatabaseSeeder extends Seeder
                         'remember_token' => Str::random(10)
                     ])
                     ->create();
-        $this->call(UserSeeder::class);
-        $this->call(KatalogSeeder::class);
-        $this->call(PesananSeeder::class);
+        // $this->call(UserSeeder::class);
+        // $this->call(KatalogSeeder::class);
+        // $this->call(PesananSeeder::class);
 
     }
 }
