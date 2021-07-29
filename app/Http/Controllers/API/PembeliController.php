@@ -100,6 +100,23 @@ class PembeliController extends APIController
         return $this->sendResponse($response, 'Profil pembeli berhasil diambil');
     }
 
+    // fungsi untuk mengambil profil pembeli
+    // berdasarkan id pembeli
+    public function profileByIdPembeli(Request $request)
+    {
+        $pembeli = Konsumen::find($request->id_pembeli);
+
+        if(!$pembeli) {
+            return $this->sendError("Pembeli tidak ditemukan");
+        }
+
+        $response = $pembeli;
+        $response['username'] = $pembeli->user()->first()->username;
+        $response['email'] = $pembeli->user()->first()->email;
+
+        return $this->sendResponse($response, 'Profil pembeli berhasil diambil');
+    }
+
     // fungsi untuk mengambil histori pesanan selesai pembeli
     // berdasarkan id user
     public function pesananPembeliByUserId(Request $request)
