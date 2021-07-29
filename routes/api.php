@@ -28,6 +28,7 @@ Route::prefix('pembeli')->group(function () {
     Route::get('/{id_user}', [PembeliController::class, 'profileByUserId']);
     Route::get('/{id_user}/pesanan', [PembeliController::class, 'pesananPembeliByUserId']);
     Route::post('updateProfil', [PembeliController::class, 'updateProfil'])->middleware(['auth:api', 'checkPembeli']);
+    Route::get('/id-pembeli/{id_pembeli}', [PembeliController::class, 'profileByIdPembeli']);
 });
 
 Route::prefix('penjahit')->group(function () {
@@ -36,6 +37,7 @@ Route::prefix('penjahit')->group(function () {
     Route::get('/{id_user}', [PenjahitController::class, 'profileByUserId']);
     Route::get('/{id_user}/pesanan', [PenjahitController::class, 'pesananPenjahitByUserId']);
     Route::post('updateProfil', [PenjahitController::class, 'updateProfil'])->middleware(['auth:api', 'checkPenjahit']);
+    Route::get('/id-penjahit/{id_penjahit}', [PenjahitController::class, 'profileByIdPenjahit']);
 });
 
 Route::prefix('kategori')->group(function () {
