@@ -75,7 +75,7 @@
 
 						<div class="pl-lg-4">
 							<div class="form-group">
-								<img src="{{ asset('gallery/images') . '/' . $baju->foto }}" alt="">
+								<img src="{{ $baju->foto }}" alt="">
 								<input type="file" class="form-control" id="image" name="image" value="{{ old('image') }}"/>  
 								@if ($errors->has('image'))
 								<div class="error">

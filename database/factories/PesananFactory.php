@@ -30,7 +30,8 @@ class PesananFactory extends Factory
             'id_baju' => Baju::all()->random()->id,
             'jumlah' => $this->faker->numberBetween(1, 40),
             'biaya_total' => $this->faker->randomFloat(null, 30000, 1000000),
-            'status_pesanan' => $this->faker->randomElement(['B', 'S'])
+            'status_pesanan' => $this->faker->randomElement(['B', 'S']),
+            'rating' => $this->faker->randomFloat(2, 1.00, 5.00)
         ];
     }
 }

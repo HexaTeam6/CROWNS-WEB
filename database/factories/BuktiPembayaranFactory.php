@@ -24,7 +24,7 @@ class BuktiPembayaranFactory extends Factory
     {
         return [
             // 'id_pembayaran' => Pembayaran::all()->random()->id,
-            'foto' => 'foto-1.jpg'
+            'foto' => asset('storage/foto-1.jpg'),
         ];
     }
 }

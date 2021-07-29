@@ -24,7 +24,7 @@ class DesignKostumFactory extends Factory
     {
         return [
             // 'id_pesanan' => Pesanan::all()->random()->id,
-            'foto' => 'foto-1.jpg',
+            'foto' => asset('storage/foto-1.jpg'),
             'deskripsi' => $this->faker->sentence()
         ];
     }

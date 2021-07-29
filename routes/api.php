@@ -76,15 +76,9 @@ Route::prefix('pesanan')->group(function () {
 });
 
 Route::get('/dummy', function () {
-    $pesanan = Pesanan::all();
-    $pesanan_last = $pesanan[35];
-    
-    // return response()->json($pesanan_last->designKustom[0]->foto, 200);
-    $foto = file_get_contents(public_path('\\gallery\\images\\' . $pesanan_last->designKustom[0]->foto));
-    $foto = base64_encode($foto);
     $response = [
         'success' => true,
-        'data'    => $foto,
+        'data'    => asset('storage/'),
         'message' => '',
     ];
     return response()->json($response, 200);
