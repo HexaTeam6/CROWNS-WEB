@@ -31,7 +31,7 @@
 				<div class="card-header">
 					<div class="row align-items-center">
 						<div class="col-11">
-							<h3 class="mb-0">Profil</h3>
+							<h3 class="mb-0">Baju</h3>
 						</div>
 						<a class="btn btn-neutral float-right col-1" href="{{ route('katalog') }}">Back</a>
 					</div>
@@ -73,9 +73,9 @@
 							</div>
 						</div>
 
+						<img src="{{ $baju->foto }}" alt="">
 						<div class="pl-lg-4">
 							<div class="form-group">
-								<img src="{{ $baju->foto }}" alt="">
 								<input type="file" class="form-control" id="image" name="image" value="{{ old('image') }}"/>  
 								@if ($errors->has('image'))
 								<div class="error">

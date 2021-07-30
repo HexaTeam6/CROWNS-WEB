@@ -50,6 +50,6 @@ class CreateController extends Controller
             $image->move(public_path() . '\\storage\\', $image_name);
         }
 
-        return asset('\\storage\\') . $image_name;
+        return asset('storage') . '/' . $image_name;
     }
 }
