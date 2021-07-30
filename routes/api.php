@@ -8,7 +8,7 @@ use App\Http\Controllers\API\PembeliController;
 use App\Http\Controllers\API\PenjahitController;
 use App\Http\Controllers\API\PesananController;
 use App\Http\Controllers\API\PesananPembeliController;
-use App\Http\Controllers\API\PesananPenjualController;
+use App\Http\Controllers\API\PesananPenjahitController;
 use App\Models\Pesanan;
 
 /*
@@ -62,9 +62,9 @@ Route::prefix('pesanan')->group(function () {
     });
 
     Route::middleware(['auth:api', 'checkPenjahit'])->group(function () {
-        Route::post('/updateHarga', [PesananPenjualController::class, 'updateHarga']);
-        Route::post('/terimaTawar', [PesananPenjualController::class, 'terimaTawar']);
-        Route::post('/tolakTawar', [PesananPenjualController::class, 'tolakTawar']);
+        Route::post('/updateHarga', [PesananPenjahitController::class, 'updateHarga']);
+        Route::post('/terimaTawar', [PesananPenjahitController::class, 'terimaTawar']);
+        Route::post('/tolakTawar', [PesananPenjahitController::class, 'tolakTawar']);
     });
 
     Route::middleware('auth:api')->group(function () {

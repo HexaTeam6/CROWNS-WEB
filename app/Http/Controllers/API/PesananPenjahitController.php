@@ -5,10 +5,11 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Models\Penjahit;
 use App\Models\Pesanan;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
-class PesananPenjualController extends APIController
+class PesananPenjahitController extends APIController
 {
         // fungsi untuk penjual mengisi harga
         public function updateHarga(Request $request)
@@ -19,6 +20,7 @@ class PesananPenjualController extends APIController
                 'biaya_material' => 'required|numeric',
                 'biaya_kirim' => 'numeric',
                 'biaya_jemput' => 'numeric',
+                'hari' => 'required|date',
             ]);
     
             if ($validator->fails()) {
@@ -35,7 +37,7 @@ class PesananPenjualController extends APIController
             DB::beginTransaction();
     
             try {
-                $input = $request->except('id_pesanan');
+                $input = $request->except('id_pesanan', 'hari');
                 $biaya_total = array_sum($input);
                 $input['status_pembayaran'] = 2;
     
@@ -46,6 +48,7 @@ class PesananPenjualController extends APIController
                 ]);
     
                 $pesanan->tawar()->create([
+                    'hari_tawar' => Carbon::parse($request->hari)->format('Y-m-d'),
                     'jumlah_penawaran' => $biaya_total,
                     'status_penawaran' => 1,
                 ]);
