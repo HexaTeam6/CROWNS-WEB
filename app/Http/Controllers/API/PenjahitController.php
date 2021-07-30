@@ -158,21 +158,43 @@ class PenjahitController extends APIController
             'kecamatan' => 'sometimes|string|max:255',
             'kota' => 'sometimes|string|max:255',
             'provinsi' => 'sometimes|string|max:255',
-            'alamat' => 'sometimes|max:1024'
+            'alamat' => 'sometimes|max:1024',
+            'list_id_baju' => 'sometimes|array',
+            'list_id_baju.*.id_baju' => 'sometimes|exists:baju,id'
         ]);
 
         if ($validator->fails()) {
             return $this->sendError('Validasi gagal', $validator->errors(), 400);
         }
 
-        $input = $request->all();
+        $input = $request->except('list_id_baju');
 
         if (isset($input['tanggal_lahir'])) {
             $input['tanggal_lahir'] = Carbon::parse($input['tanggal_lahir'])->format('Y-m-d');
         }
 
-        $penjahit = Penjahit::where('id_user', $request->user()->id)->first();
-        $penjahit->update($input);
+        DB::beginTransaction();
+
+        try {
+            $penjahit = Penjahit::where('id_user', $request->user()->id)->first();
+            $penjahit->update($input);
+
+            if (isset($request['list_id_baju'])) {
+                $inputBaju = array_map(function ($val) {
+                    return $val['id_baju'];
+                }, $request->list_id_baju);
+    
+                $penjahit->baju()->sync($inputBaju);
+            }
+
+        } catch (\Exception $e) {
+            DB::rollback();
+            return $this->sendError('Update gagal',  $e->getMessage(), 500);
+        }
+
+        DB::commit();
+
+        $penjahit['katalog'] = $penjahit->baju()->get();
 
         return $this->sendResponse($penjahit, 'Profil penjahit berhasil diupdate');
     }
