@@ -71,6 +71,7 @@ Route::prefix('pesanan')->group(function () {
     Route::middleware('auth:api')->group(function () {
         Route::get('/pembayaranValid', [PesananController::class, 'pembayaranValid']);
         Route::get('/pembayaranBelumValid', [PesananController::class, 'pembayaranBelumValid']);
+        Route::get('/pembayaranValidSelesai', [PesananController::class, 'pembayaranValidSelesai']);
     });
 
     Route::get('/{id_pesanan}', [PesananController::class, 'pesananById']);

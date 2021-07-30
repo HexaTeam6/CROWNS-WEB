@@ -58,12 +58,46 @@ class PesananController extends APIController
         } else if ($user->role == 'penjahit') {
             $user = $user->penjahit;
         }
+                    
+        $pesanan1 = $user->pesanan()->where('status_pesanan', 3)->get();
 
-        $pesanan = $user->pesanan()->where('status_pesanan', 4)
+        $pesanan2 = $user->pesanan()->where('status_pesanan', 4)
                     ->whereHas('pembayaran', function (Builder $query2) {
-                        $query2->where('status_pembayaran', '<>', 4);
-                    })->orWhere('status_pesanan', 3)->latest()->get();
+                            $query2->where('status_pembayaran', '<>', 4);
+                    })->get();
+
+        $pesanan = $pesanan1->merge($pesanan2)->sortBy([
+            ['created_at', 'desc'],
+            ['updated_at', 'desc'],
+        ]);
 
         return $this->sendResponse(PesananResource::collection($pesanan), 'Pesanan yang pembayarannya belum valid berhasil diambil');
+    }
+
+    // fungsi untuk mengambil list pesanan
+    // yang sudah valid atau selesai
+    public function pembayaranValidSelesai(Request $request)
+    {
+        $user = $request->user();
+
+        if ($user->role == 'pembeli') {
+            $user = $user->konsumen;
+        } else if ($user->role == 'penjahit') {
+            $user = $user->penjahit;
+        }
+                    
+        $pesanan1 = $user->pesanan()->where('status_pesanan', 4)
+                    ->whereHas('pembayaran', function (Builder $query2) {
+                        $query2->where('status_pembayaran', 4);
+                    })->get();
+
+        $pesanan2 = $user->pesanan()->where('status_pesanan', 5)->get();
+        
+        $pesanan = $pesanan1->merge($pesanan2)->sortBy([
+            ['created_at', 'desc'],
+            ['updated_at', 'desc'],
+        ]);
+
+        return $this->sendResponse(PesananResource::collection($pesanan), 'Pesanan yang pembayarannya valid dan pesanan selesai berhasil diambil');
     }
 }
