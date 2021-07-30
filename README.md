@@ -14,8 +14,11 @@ run:
     composer install
     npm install
     npm run dev
+    
     php artisan migrate:fresh
     php artisan db:seed
+    php artisan passport:client --personal
+    php artisan storage:link
 ```
 
 ### Seeder akun admin
