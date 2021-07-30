@@ -10,6 +10,7 @@ class Penjahit extends Model
     use HasFactory;
     protected $table = 'penjahit';
     public $timestamps = false;
+    protected $appends = ['rating'];
 
     protected $fillable = [
         'id_user',
@@ -39,5 +40,10 @@ class Penjahit extends Model
     public function pesanan()
     {
         return $this->hasMany(Pesanan::class, 'id_penjahit');
+    }
+
+    public function getRatingAttribute()
+    {
+        return $this->pesanan()->avg('rating');
     }
 }
