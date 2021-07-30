@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class PesananResource extends JsonResource
@@ -23,8 +24,8 @@ class PesananResource extends JsonResource
             'biaya_total' => $this->biaya_total,
             'status_pesanan' => $this->status_pesanan,
             'rating' => $this->rating,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'created_at' => Carbon::parse($this->created_at)->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::parse($this->updated_at)->format('Y-m-d H:i:s'),
             'detail_pesanan' => $this->detailPesanan,
             'designKustom' => $this->designKustom,
             'lokasi_penjemputan' => $this->lokasiPenjemputan,

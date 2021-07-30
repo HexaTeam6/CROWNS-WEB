@@ -59,6 +59,7 @@ Route::prefix('pesanan')->group(function () {
         Route::post('/ajukanTawar', [PesananPembeliController::class, 'ajukanTawar']);
         Route::post('/bayar', [PesananPembeliController::class, 'bayar']);
         Route::post('/rate', [PesananPembeliController::class, 'rate']);
+        Route::post('/konfirmasiSelesai', [PesananPembeliController::class, 'selesai']);
     });
 
     Route::middleware(['auth:api', 'checkPenjahit'])->group(function () {

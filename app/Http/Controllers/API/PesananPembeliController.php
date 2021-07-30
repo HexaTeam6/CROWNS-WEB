@@ -333,4 +333,30 @@ class PesananPembeliController extends APIController
 
         return $this->sendResponse($pesanan, 'Memberikan rating berhasil');
     }
+
+    // fungsi untuk pembeli mengubah status pesanan selesai
+    public function selesai(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id_pesanan' => 'required|exists:pesanan,id',
+        ]);
+
+        if ($validator->fails()) {
+            return $this->sendError('Validasi gagal', $validator->errors(), 400);
+        }
+
+        $konsumen = Konsumen::where('id_user', $request->user()->id)->first();
+        $pesanan = Pesanan::find($request->id_pesanan);
+
+        if ($pesanan->id_konsumen != $konsumen->id || !$pesanan->pembayaran 
+            || $pesanan->pembayaran->status_pembayaran != 4) {
+            return $this->sendError('Pesanan tidak ditemukan');
+        }
+
+        $pesanan->update([
+            'status_pesanan' => 5
+        ]);
+
+        return $this->sendResponse($pesanan, 'Konfirmasti pesanan selesai berhasil');
+    }
 }
