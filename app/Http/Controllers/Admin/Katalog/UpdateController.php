@@ -23,9 +23,8 @@ class UpdateController extends Controller
         if ($image !== null) {
             $image_name = 'foto' . '-' . $id . "." . $image->extension();
             $image_name = str_replace(' ', '-', strtolower($image_name));
-            Storage::delete(public_path() . '\\gallery\\images\\' . $baju->foto);
-            $image->storeAs('images', $image_name);
-            $image->move(public_path() . '\\gallery\\images\\', $image_name);
+            Storage::delete($baju->foto);
+            $image->storeAs('public', $image_name);
         }
 
         /* common data */
@@ -33,7 +32,7 @@ class UpdateController extends Controller
             'nama' => $request->nama,
             'jenis_kelamin' => $request->jenis_kelamin,
             'deskripsi' => $request->deskripsi,
-            'foto' => $image_name
+            'foto' => asset('storage') . '/' . $image_name
         ]);
         
         return redirect()->back()->with('success', 'berhasil diedit');

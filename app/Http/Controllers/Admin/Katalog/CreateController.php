@@ -46,8 +46,7 @@ class CreateController extends Controller
         if ($image !== null) {
             $image_name = 'foto' . '-' . $id . "." . $image->extension();
             $image_name = str_replace(' ', '-', strtolower($image_name));
-            $image->storeAs('images', $image_name);
-            $image->move(public_path() . '\\storage\\', $image_name);
+            $image->storeAs('public', $image_name);
         }
 
         return asset('storage') . '/' . $image_name;
