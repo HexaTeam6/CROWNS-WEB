@@ -73,7 +73,8 @@
 							</div>
 						</div>
 
-						<img src="{{ $baju->foto }}" alt="">
+						<img src="{{ $baju->foto }}" alt="" class="pl-4" style="max-width: 500px;">
+						<br>
 						<div class="pl-lg-4">
 							<div class="form-group">
 								<input type="file" class="form-control" id="image" name="image" value="{{ old('image') }}"/>  
