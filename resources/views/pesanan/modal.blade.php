@@ -11,7 +11,7 @@
       </div>
       <div class="modal-body">
         Apakah Anda yakin memvalidasi pembayaran ini?
-        <img alt="unavailable" id="bukti-bayar">
+        <img class="m-2" alt="unavailable" id="bukti-bayar" style="max-width: 500px;">
         <form method="POST" name="form-validate-name" id="myform">
           @csrf
           @method('PUT')
