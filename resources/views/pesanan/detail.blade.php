@@ -52,30 +52,96 @@
 						@method('PUT')
 						<input type="hidden" value="{{ $pembayaran->pesanan->id }}">
 						<h6 class="heading-small text-muted mb-4">Info Detail Pesanan</h6>
+						
+						<div class="pl-lg-4">
+							<div class="row">
+								<div class="col-lg-3">
+									<div class="form-group">
+										<label class="form-control-label" for="input-first-name">Penjahit <i class="ni ni-badge text-primary"></i></label>
+										<input type="text" class="form-control" placeholder="Nama" value="{{ $pembayaran->pesanan->penjahit->nama }}" name="biaya_jahit">
+									</div>
+								</div>
+
+								<div class="col-lg-3">
+									<div class="form-group">
+										<label class="form-control-label" for="input-first-name">Konsumen <i class="ni ni-single-02 text-primary"></i></label>
+										<input type="text" class="form-control" placeholder="Nama" value="{{ $pembayaran->pesanan->pembeli->nama }}" name="biaya_jahit">
+									</div>
+								</div>
+
+								<div class="col-lg-3">
+									<div class="form-group">
+										<label class="form-control-label" for="input-first-name">Dibuat pada <i class="ni ni-watch-time text-primary"></i></label>
+										<input type="datetime" class="form-control" placeholder="Nama" value="{{ $pembayaran->pesanan->created_at }}" name="created_at">
+									</div>
+								</div>
+
+								<div class="col-lg-3">
+									<div class="form-group">
+										<label class="form-control-label" for="input-first-name">Diperbarui pada <i class="ni ni-watch-time text-primary"></i></label>
+										<input type="datetime" class="form-control" placeholder="Nama" value="{{ $pembayaran->pesanan->updated_at }}" name="updated_at">
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<h6 class="heading-small text-muted mb-1">
+							Status Pesanan: 
+							<?php 
+								if ($pembayaran->pesanan->status_pesanan == '5') echo 'Pesanan selesai'; 
+								if ($pembayaran->pesanan->status_pesanan == '4') {
+									if ($pembayaran->status_pembayaran == '4') echo 'Sedang dikerjakan penjahit';
+									if ($pembayaran->status_pembayaran == '3') echo 'Menunggu konfirmasi pembayaran';
+									if ($pembayaran->status_pembayaran == '2') echo 'Pembayaran ditolak';
+								}
+								if ($pembayaran->pesanan->status_pesanan == '3') {
+									if ($pembayaran->status_pembayaran == '2') echo 'Menunggu bukti pembayaran';
+									if ($pembayaran->status_pembayaran == '1') echo 'Menunggu harga dari penjahit';
+								}
+								if ($pembayaran->pesanan->status_pesanan == '2') echo 'Menunggu pengisian data lokasi';
+								if ($pembayaran->pesanan->status_pesanan == '1') echo 'Pesanan masih kosong';
+							?>
+						</h6>
+						<h6 class="heading-small mb-4
+							<?php 
+								if ($pembayaran->status_pembayaran == '4') echo 'text-success'; 
+								if ($pembayaran->status_pembayaran == '3') echo 'text-yellow';
+								if ($pembayaran->status_pembayaran == '2') echo 'text-danger';
+							?>
+						">
+							Status Pembayaran: 
+							<?php 
+								if ($pembayaran->status_pembayaran == '4') echo 'diterima'; 
+								if ($pembayaran->status_pembayaran == '3') echo 'menunggu dikonfirmasi';
+								if ($pembayaran->status_pembayaran == '2') echo 'ditolak';
+							?>
+						</h6>
+
+						<h6 class="heading-small text-muted mb-4">Detail Pembayaran</h6>
 
 						<div class="pl-lg-4">
 							<div class="row">
 								<div class="col-lg-3">
 									<div class="form-group">
-										<label class="form-control-label" for="input-first-name">Biaya Jahit</label>
+										<label class="form-control-label" for="input-first-name">Biaya Jahit <i class="ni ni ni-money-coins text-info"></i></label>
 										<input type="text" class="form-control" placeholder="Nama" value="{{ $pembayaran->biaya_jahit }}" name="biaya_jahit">
 									</div>
 								</div>
 								<div class="col-lg-3">
 									<div class="form-group">
-										<label class="form-control-label" for="input-first-name">Biaya Material</label>
+										<label class="form-control-label" for="input-first-name">Biaya Material <i class="ni ni ni-money-coins text-info"></i></label>
 										<input type="text" class="form-control" placeholder="Nama" value="{{ $pembayaran->biaya_material }}" name="biaya_material">
 									</div>
 								</div>
 								<div class="col-lg-3">
 									<div class="form-group">
-										<label class="form-control-label" for="input-first-name">Biaya Kirim</label>
+										<label class="form-control-label" for="input-first-name">Biaya Kirim <i class="ni ni ni-money-coins text-info"></i></label>
 										<input type="text" class="form-control" placeholder="Nama" value="{{ $pembayaran->biaya_kirim }}" name="biaya_kirim">
 									</div>
 								</div>
 								<div class="col-lg-3">
 									<div class="form-group">
-										<label class="form-control-label" for="input-first-name">Biaya Jemput</label>
+										<label class="form-control-label" for="input-first-name">Biaya Jemput <i class="ni ni ni-money-coins text-info"></i></label>
 										<input type="text" class="form-control" placeholder="Nama" value="{{ $pembayaran->biaya_jemput }}" name="biaya_jemput">
 									</div>
 								</div>
@@ -86,7 +152,7 @@
 							<div class="row">
 								<div class="col-lg-12">
 									<div class="form-group">
-										<label class="form-control-label" for="input-first-name">Biaya Total</label>
+										<label class="form-control-label" for="input-first-name">Biaya Total (yang harus dikirim) <i class="ni ni ni-money-coins text-info"></i></label>
 										<input type="text" class="form-control" placeholder="Nama" value="{{ $pembayaran->pesanan->biaya_total }}" name="biaya_total">
 									</div>
 								</div>
@@ -94,29 +160,48 @@
 						</div>
 
 						<hr class="my-4" />
+						<h6 class="heading-small text-muted mb-4">Desain Baju</h6>
 						<div class="pl-lg-4">
-							<div class="row">
-								<div class="col-lg-6">
-									<div class="form-group">
-										<label class="form-control-label" for="input-first-name">Dibuat pada</label>
-										<input type="datetime" class="form-control" placeholder="Nama" value="{{ $pembayaran->pesanan->created_at }}" name="created_at">
+							<?php
+								if($pembayaran->pesanan->baju) {
+							?>
+								<div class="row">
+									<div class="col-lg-3">
+										<div class="form-group">
+											<label class="form-control-label" for="input-first-name">Baju</label>
+											<input type="text" class="form-control" placeholder="Nama" value="{{ $pembayaran->pesanan->baju->nama }}" name="biaya_total">
+										</div>
 									</div>
 								</div>
-								<div class="col-lg-6">
-									<div class="form-group">
-										<label class="form-control-label" for="input-first-name">Diperbarui pada</label>
-										<input type="datetime" class="form-control" placeholder="Nama" value="{{ $pembayaran->pesanan->updated_at }}" name="updated_at">
+								<img src="{{ $pembayaran->pesanan->baju->foto }}" alt="fail to load image" style="max-width: 500px; max-height: 500px;">
+									<?php
+										}
+										else if($pembayaran->pesanan->designKustom) {
+									?>
+								<div class="row">
+									<div class="col-lg-3">
+										<div class="form-group">
+											<label class="form-control-label" for="input-first-name">Baju (design kustom)<i class="ni ni-single-02 mr-3"></i></label>
+										</div>
 									</div>
 								</div>
-							</div>
+								@foreach($pembayaran->pesanan->designKustom as $baju)
+									<img src="{{ $baju->foto }}" alt="fail to load image" style="max-width: 500px; max-height: 500px;">
+								@endforeach
+							<?php
+								}
+							?>
 						</div>
 
 						<hr class="my-4" />
 						<h6 class="heading-small text-muted mb-4">Bukti Pembayaran</h6>
-						@foreach($pembayaran->buktiPembayaran as $bukti)
-						<img src="{{ $bukti->foto }}" alt="fail to load: {{ $bukti->foto }}">
+						<div class="pl-lg-4">
+							@foreach($pembayaran->buktiPembayaran as $bukti)
+							<img src="{{ $bukti->foto }}" alt="fail to load: {{ $bukti->foto }}" style="max-width: 500px; max-height: 500px;">
+							@endforeach
+						</div>
 						<hr class="my-4" />
-						@endforeach
+
 						<input type="submit" class="btn btn-neutral float-right" value="Validasi">
 						<select class="btn float-right pr-5" name="validasi">
 							<option value="4" class="text-success">Terima Validasi</option>
