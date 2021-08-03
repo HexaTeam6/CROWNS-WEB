@@ -85,39 +85,45 @@
 							</div>
 						</div>
 						
-						<h6 class="heading-small text-muted mb-1">
-							Status Pesanan: 
-							<?php 
-								if ($pembayaran->pesanan->status_pesanan == '5') echo 'Pesanan selesai'; 
-								if ($pembayaran->pesanan->status_pesanan == '4') {
-									if ($pembayaran->status_pembayaran == '4') echo 'Sedang dikerjakan penjahit';
-									if ($pembayaran->status_pembayaran == '3') echo 'Menunggu konfirmasi pembayaran';
-									if ($pembayaran->status_pembayaran == '2') echo 'Pembayaran ditolak';
-								}
-								if ($pembayaran->pesanan->status_pesanan == '3') {
-									if ($pembayaran->status_pembayaran == '2') echo 'Menunggu bukti pembayaran';
-									if ($pembayaran->status_pembayaran == '1') echo 'Menunggu harga dari penjahit';
-								}
-								if ($pembayaran->pesanan->status_pesanan == '2') echo 'Menunggu pengisian data lokasi';
-								if ($pembayaran->pesanan->status_pesanan == '1') echo 'Pesanan masih kosong';
-							?>
-						</h6>
-						<h6 class="heading-small mb-4
-							<?php 
-								if ($pembayaran->status_pembayaran == '4') echo 'text-success'; 
-								if ($pembayaran->status_pembayaran == '3') echo 'text-yellow';
-								if ($pembayaran->status_pembayaran == '2') echo 'text-danger';
-							?>
-						">
-							Status Pembayaran: 
-							<?php 
-								if ($pembayaran->status_pembayaran == '4') echo 'diterima'; 
-								if ($pembayaran->status_pembayaran == '3') echo 'menunggu dikonfirmasi';
-								if ($pembayaran->status_pembayaran == '2') echo 'ditolak';
-							?>
-						</h6>
+						<div class="pl-lg-4">
+							<h6 class="heading-small text-muted mb-1">
+								Status Pesanan: 
+								<?php 
+									if ($pembayaran->pesanan->status_pesanan == '5') echo 'Pesanan selesai'; 
+									if ($pembayaran->pesanan->status_pesanan == '4') {
+										if ($pembayaran->status_pembayaran == '4') echo 'Sedang dikerjakan penjahit';
+										if ($pembayaran->status_pembayaran == '3') echo 'Menunggu konfirmasi pembayaran';
+										if ($pembayaran->status_pembayaran == '2') echo 'Pembayaran ditolak';
+									}
+									if ($pembayaran->pesanan->status_pesanan == '3') {
+										if ($pembayaran->status_pembayaran == '2') echo 'Menunggu bukti pembayaran';
+										if ($pembayaran->status_pembayaran == '1') echo 'Menunggu harga dari penjahit';
+									}
+									if ($pembayaran->pesanan->status_pesanan == '2') echo 'Menunggu pengisian data lokasi';
+									if ($pembayaran->pesanan->status_pesanan == '1') echo 'Pesanan masih kosong';
+								?>
+							</h6>
+							<h6 class="heading-small mb-4
+								<?php 
+									if ($pembayaran->status_pembayaran == '4') echo 'text-success'; 
+									if ($pembayaran->status_pembayaran == '3') echo 'text-yellow';
+									if ($pembayaran->status_pembayaran == '2') echo 'text-danger';
+								?>
+							">
+								Status Pembayaran: 
+								<?php 
+									if ($pembayaran->status_pembayaran == '4') echo 'diterima'; 
+									if ($pembayaran->status_pembayaran == '3') echo 'menunggu dikonfirmasi';
+									if ($pembayaran->status_pembayaran == '2') echo 'ditolak';
+								?>
+							</h6>
+						</div>
+						<hr class="my-4" />
 
 						<h6 class="heading-small text-muted mb-4">Detail Pembayaran</h6>
+						<div class="pl-lg-4">
+							<h6 class="form-control-label">Estimasi hari: <?php if($pembayaran->pesanan->tawar) echo $pembayaran->pesanan->tawar->hari_tawar ?> <i class="ni ni-calendar-grid-58 text-info"></i></h6>
+						</div>
 
 						<div class="pl-lg-4">
 							<div class="row">
