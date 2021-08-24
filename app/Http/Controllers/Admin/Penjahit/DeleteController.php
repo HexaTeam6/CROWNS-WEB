@@ -17,6 +17,9 @@ class DeleteController extends Controller
         $penjahit = Penjahit::findOrFail($request->id_penjahit);
         try {
             $katalogs = MemilikiKatalog::where('id_penjahit', $penjahit->id)->get();
+            foreach($penjahit->pesanan as $pesanan) {
+                $pesanan->update(['id_penjahit' => null]);
+            }
             foreach($katalogs as $katalog) {
                 $katalog->delete();
             }
