@@ -58,14 +58,26 @@
 								<div class="col-lg-3">
 									<div class="form-group">
 										<label class="form-control-label" for="input-first-name">Penjahit <i class="ni ni-badge text-primary"></i></label>
-										<input type="text" class="form-control" placeholder="Nama" value="{{ $pembayaran->pesanan->penjahit->nama }}" name="biaya_jahit">
+										<input type="text" class="form-control" placeholder="Nama" value="
+											<?php
+												if (!isset($pembayaran->pesanan->penjahit))
+												echo 'data user tidak ada';
+												else echo $pembayaran->pesanan->penjahit->nama;
+											?>
+											" name="biaya_jahit">
 									</div>
 								</div>
 
 								<div class="col-lg-3">
 									<div class="form-group">
 										<label class="form-control-label" for="input-first-name">Konsumen <i class="ni ni-single-02 text-primary"></i></label>
-										<input type="text" class="form-control" placeholder="Nama" value="{{ $pembayaran->pesanan->pembeli->nama }}" name="biaya_jahit">
+										<input type="text" class="form-control" placeholder="Nama" value="
+										<?php
+											if (!isset($pembayaran->pesanan->pembeli))
+											 echo 'data user tidak ada';
+											else echo $pembayaran->pesanan->pembeli->nama;
+										?>
+										" name="biaya_jahit">
 									</div>
 								</div>
 

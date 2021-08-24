@@ -13,6 +13,9 @@ class DeleteController extends Controller
     {
         $user = User::findOrFail($request->id);
         $konsumen = Konsumen::findOrFail($request->id_konsumen);
+        foreach($konsumen->pesanan as $pesanan) {
+            $pesanan->update(['id_konsumen' => null]);
+        }
         $konsumen->delete();
         $user->delete();
         return redirect()->back();
