@@ -64,7 +64,7 @@
 												echo 'data user tidak ada';
 												else echo $pembayaran->pesanan->penjahit->nama;
 											?>
-											" name="biaya_jahit">
+											" name="biaya_jahit" disabled>
 									</div>
 								</div>
 
@@ -77,21 +77,21 @@
 											 echo 'data user tidak ada';
 											else echo $pembayaran->pesanan->pembeli->nama;
 										?>
-										" name="biaya_jahit">
+										" name="biaya_jahit" disabled>
 									</div>
 								</div>
 
 								<div class="col-lg-3">
 									<div class="form-group">
 										<label class="form-control-label" for="input-first-name">Dibuat pada <i class="ni ni-watch-time text-primary"></i></label>
-										<input type="datetime" class="form-control" placeholder="Nama" value="{{ $pembayaran->pesanan->created_at }}" name="created_at">
+										<input type="datetime" class="form-control" placeholder="Nama" value="{{ $pembayaran->pesanan->created_at }}" name="created_at" disabled>
 									</div>
 								</div>
 
 								<div class="col-lg-3">
 									<div class="form-group">
 										<label class="form-control-label" for="input-first-name">Diperbarui pada <i class="ni ni-watch-time text-primary"></i></label>
-										<input type="datetime" class="form-control" placeholder="Nama" value="{{ $pembayaran->pesanan->updated_at }}" name="updated_at">
+										<input type="datetime" class="form-control" placeholder="Nama" value="{{ $pembayaran->pesanan->updated_at }}" name="updated_at" disabled>
 									</div>
 								</div>
 							</div>
@@ -142,25 +142,25 @@
 								<div class="col-lg-3">
 									<div class="form-group">
 										<label class="form-control-label" for="input-first-name">Biaya Jahit <i class="ni ni ni-money-coins text-info"></i></label>
-										<input type="text" class="form-control" placeholder="Nama" value="{{ $pembayaran->biaya_jahit }}" name="biaya_jahit">
+										<input type="text" class="form-control" placeholder="Nama" value="{{ $pembayaran->biaya_jahit }}" name="biaya_jahit" disabled>
 									</div>
 								</div>
 								<div class="col-lg-3">
 									<div class="form-group">
 										<label class="form-control-label" for="input-first-name">Biaya Material <i class="ni ni ni-money-coins text-info"></i></label>
-										<input type="text" class="form-control" placeholder="Nama" value="{{ $pembayaran->biaya_material }}" name="biaya_material">
+										<input type="text" class="form-control" placeholder="Nama" value="{{ $pembayaran->biaya_material }}" name="biaya_material" disabled>
 									</div>
 								</div>
 								<div class="col-lg-3">
 									<div class="form-group">
 										<label class="form-control-label" for="input-first-name">Biaya Kirim <i class="ni ni ni-money-coins text-info"></i></label>
-										<input type="text" class="form-control" placeholder="Nama" value="{{ $pembayaran->biaya_kirim }}" name="biaya_kirim">
+										<input type="text" class="form-control" placeholder="Nama" value="{{ $pembayaran->biaya_kirim }}" name="biaya_kirim" disabled>
 									</div>
 								</div>
 								<div class="col-lg-3">
 									<div class="form-group">
 										<label class="form-control-label" for="input-first-name">Biaya Jemput <i class="ni ni ni-money-coins text-info"></i></label>
-										<input type="text" class="form-control" placeholder="Nama" value="{{ $pembayaran->biaya_jemput }}" name="biaya_jemput">
+										<input type="text" class="form-control" placeholder="Nama" value="{{ $pembayaran->biaya_jemput }}" name="biaya_jemput" disabled>
 									</div>
 								</div>
 							</div>
@@ -171,7 +171,7 @@
 								<div class="col-lg-12">
 									<div class="form-group">
 										<label class="form-control-label" for="input-first-name">Biaya Total <i class="ni ni ni-money-coins text-info"></i></label>
-										<input type="text" class="form-control" placeholder="Nama" value="{{ $pembayaran->pesanan->biaya_total }}" name="biaya_total">
+										<input type="text" class="form-control" placeholder="Nama" value="{{ $pembayaran->pesanan->biaya_total }}" name="biaya_total" disabled>
 									</div>
 								</div>
 							</div>
@@ -182,7 +182,7 @@
 								<div class="col-lg-12">
 									<div class="form-group">
 										<label class="form-control-label" for="input-first-name">Total yang Harus Dibayarkan (-10%) <i class="ni ni ni-money-coins text-info"></i></label>
-										<input type="text" class="form-control" placeholder="Nama" value="{{ $pembayaran->pesanan->biaya_total * 9 / 10 }}" name="biaya_total">
+										<input type="text" class="form-control" placeholder="Nama" value="{{ $pembayaran->pesanan->biaya_total * 9 / 10 }}" name="biaya_total" disabled>
 									</div>
 								</div>
 							</div>
@@ -198,7 +198,7 @@
 									<div class="col-lg-3">
 										<div class="form-group">
 											<label class="form-control-label" for="input-first-name">Baju</label>
-											<input type="text" class="form-control" placeholder="Nama" value="{{ $pembayaran->pesanan->baju->nama }}" name="biaya_total">
+											<input type="text" class="form-control" placeholder="Nama" value="{{ $pembayaran->pesanan->baju->nama }}" name="biaya_total" disabled>
 										</div>
 									</div>
 								</div>
