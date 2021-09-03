@@ -170,8 +170,19 @@
 							<div class="row">
 								<div class="col-lg-12">
 									<div class="form-group">
-										<label class="form-control-label" for="input-first-name">Biaya Total (yang harus dikirim) <i class="ni ni ni-money-coins text-info"></i></label>
+										<label class="form-control-label" for="input-first-name">Biaya Total <i class="ni ni ni-money-coins text-info"></i></label>
 										<input type="text" class="form-control" placeholder="Nama" value="{{ $pembayaran->pesanan->biaya_total }}" name="biaya_total">
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="pl-lg-4">
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="form-group">
+										<label class="form-control-label" for="input-first-name">Total yang Harus Dibayarkan (-10%) <i class="ni ni ni-money-coins text-info"></i></label>
+										<input type="text" class="form-control" placeholder="Nama" value="{{ $pembayaran->pesanan->biaya_total * 9 / 10 }}" name="biaya_total">
 									</div>
 								</div>
 							</div>
